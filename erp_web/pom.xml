@@ -16,12 +16,17 @@
   		<artifactId>erp_biz</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
-  </dependencies>
+  	<dependency>
+  		<groupId>cn.itcast</groupId>
+  		<artifactId>erp_entity</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+</dependencies>
 
-  <properties>
+<!--   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
+  </properties> -->
   
 </project>

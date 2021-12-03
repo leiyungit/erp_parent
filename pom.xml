@@ -17,6 +17,11 @@
   	<spring.version>4.2.4.RELEASE</spring.version>
   	<struts.version>2.3.24</struts.version>
   	<hibernate.version>5.0.7.Final</hibernate.version>
+  	
+  	<!--追加  -->
+  	<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target> -->
   </properties>
   
   <dependencies>
@@ -147,6 +152,7 @@
 		</dependencies>
     </dependencyManagement>
     <build>
+    	<defaultGoal>compile</defaultGoal>
     	<plugins>
     		<plugin>
     			<groupId>org.apache.tomcat.maven</groupId>

@@ -55,3 +55,18 @@
 eclipse 没有tomcat的问题
 
 ![1638503435871](C:\Users\v_yunylei\AppData\Roaming\Typora\typora-user-images\1638503435871.png)
+
+ http://download.eclipse.org/releases/kepler 
+
+展开 ”Web, XML, Java EE and OSGi Enterprise Development“选项，并且将下面四个选项打上勾：
+
+Eclipse Java EE Developer Tools
+
+Eclipse Java Web Developer Tools
+
+Eclipse Web Developer Tools
+
+Eclipse XML Editors and Tools
+————————————————
+版权声明：本文为CSDN博主「shuozhuo」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/mijichui2153/article/details/81185715

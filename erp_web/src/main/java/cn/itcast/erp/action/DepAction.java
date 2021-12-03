@@ -25,7 +25,7 @@ public class DepAction {
 
 
 
-	public void getList() {
+	public void list() {
 		
 		List<Dep> list = depBiz.getList();
 		String stringList = JSON.toJSONString(list);
