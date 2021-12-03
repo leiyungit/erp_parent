@@ -26,7 +26,7 @@ public class DepAction {
 
 
 	public void list() {
-		
+        System.out.println("===========list");
 		List<Dep> list = depBiz.getList();
 		String stringList = JSON.toJSONString(list);
 		HttpServletResponse response = ServletActionContext.getResponse();
