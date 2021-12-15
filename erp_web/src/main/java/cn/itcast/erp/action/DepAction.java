@@ -88,6 +88,68 @@ public class DepAction {
         write(stringList);
     }
 
+    /**删除 主键*/
+    private long id;
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void delete(){
+        System.out.println("delete=>id:"+id);
+        try {
+            depBiz.delete(id);
+            ajaxReturn(true,"删除成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ajaxReturn(false,"删除失败");
+        }
+    }
+
+    public void get(){
+        System.out.println("get=>id:"+id);
+        Dep dep = depBiz.get(id);
+        String stringList = JSON.toJSONString(dep);
+        String jsonString = mapData(stringList,"dep");
+        write(jsonString);
+    }
+
+    public void update(){
+        System.out.println(dep);
+        try {
+            depBiz.update(dep);
+            ajaxReturn(true,"修改成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ajaxReturn(false,"修改失败");
+        }
+    }
+
+    /**
+     * //{"name":"管理员组","tele":"000011","uuid":1}
+     * @param jsonString JSON数据字符串
+     * @param prefix 要加上的前缀
+     * @return  {"dep.name":"管理员组","dep.tele":"000011","dep.uuid":1}
+     */
+    public String mapData(String jsonString, String prefix){
+        Map<String,Object> map = JSON.parseObject(jsonString);
+        Map<String,Object> result = new HashMap<>();
+        for (String key : map.keySet()) {
+            result.put(prefix+"."+key,map.get(key));
+        }
+        return JSON.toJSONString(result);
+    }
+
+    public void ajaxReturn(boolean success, String message){
+        //返回前端的JSON数据
+        Map<String, Object> rtn = new HashMap<String, Object>();
+        rtn.put("success",success);
+        rtn.put("message",message);
+        write(JSON.toJSONString(rtn));
+    }
+
 	public void write(String jsonString){
         HttpServletResponse response = ServletActionContext.getResponse();
         response.setContentType("text/html;charset=utf-8");

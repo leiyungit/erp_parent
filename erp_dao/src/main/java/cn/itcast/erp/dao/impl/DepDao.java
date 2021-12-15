@@ -25,11 +25,11 @@ public class DepDao extends HibernateDaoSupport implements IDepDao {
     @Override
     public List<Dep> getList(Dep dep1, int firstResult, int maxResults) {
         //DetachedCriteria dc = getDetachedCriteria(dep1);
-        return this.getList(dep1,null,null,firstResult,maxResults);
+        return this.listByPage(dep1,null,null,firstResult,maxResults);
     }
 
     @Override
-	public List<Dep> getList(Dep dep1, Dep dep2, Object param, int firstResult, int maxResults) {
+	public List<Dep> listByPage(Dep dep1, Dep dep2, Object param, int firstResult, int maxResults) {
         DetachedCriteria dc = getDetachedCriteria(dep1);
         return (List<Dep>) this.getHibernateTemplate().findByCriteria(dc,firstResult,maxResults);
 	}
@@ -70,12 +70,12 @@ public class DepDao extends HibernateDaoSupport implements IDepDao {
 
 	@Override
 	public Dep get(Long uuid) {
-		return (Dep) this.getHibernateTemplate().get("uuid",uuid);
+		return this.getHibernateTemplate().get(Dep.class,uuid);
 	}
 
 	@Override
 	public void update(Dep dep) {
-        this.getHibernateTemplate().save(dep);
+        this.getHibernateTemplate().update(dep);
 	}
 
 	private DetachedCriteria getDetachedCriteria(Dep dep1){

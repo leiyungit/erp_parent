@@ -18,4 +18,21 @@ public interface IDepBiz {
      * @param dep
      */
     void add(Dep dep);
+
+    /**
+     * 删除
+     */
+    void delete(Long uuid);
+
+    /**
+     * 通过编号查询对象
+     * @param uuid
+     * @return
+     */
+    Dep get(Long uuid);
+
+    /**
+     * 更新
+     */
+    void update(Dep dep);
 }

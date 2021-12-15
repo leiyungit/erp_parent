@@ -10,6 +10,7 @@
     <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
     <script>
+        var method='';
         $(function(){
             //$.messager.alert("提示","欢迎来到....");
              $('#grid').datagrid({
@@ -17,7 +18,13 @@
                  columns:[[
                      {field:'uuid',title:'编码',width:100},
                      {field:'name',title:'部门名称',width:100},
-                     {field:'tele',title:'部门电话',width:100,align:'right'}
+                     {field:'tele',title:'部门电话',width:100,align:'right'},
+                     {field: '-',title: '操作',formatter: function(value,row,index){
+                             var oper = "<a href='javascript:void(0)' onclick='edit("+row.uuid+")'>修改</a>&nbsp;&nbsp;";
+                             oper +="<a href='javascript:void(0)' onclick='del("+row.uuid+")'>删除</a>";
+                             return oper;
+                         }
+                     }
                  ]],
                  pagination:true, // 在DataGrid控件底部显示分页工具栏
                  singleSelect:true, // 只允许选择一行
@@ -26,6 +33,7 @@
                      text:'新增',
                      iconCls:'icon-add',
                      handler:function(){
+                         method = 'add';
                          $('#editDlg').dialog('open');
                      }
                  }]
@@ -59,7 +67,7 @@
 
             $('#editDlg').dialog({
                 title: '编辑部门',
-                width: 400,
+                width: 300,
                 height: 200,
                 closed: true, // 默认打开或关闭，true:关闭
                 modal: true
@@ -70,7 +78,7 @@
                 var formData = $('#editForm').serializeJSON();
 
                 $.ajax({
-                    url: 'dep_add',
+                    url: 'dep_' + method,
                     data: formData,
                     dataType: 'json',
                     type: 'post',
@@ -83,10 +91,44 @@
                         });
                     }
                 });
+            }); // btnsave
 
-            });
         });
+        /**
+         * 删除部门
+         */
+        function del(uuid){
+            console.log(uuid);
+            $.messager.confirm('确认','确认要删除吗？',function (yes){
+                if(yes){
+                    $.ajax({
+                        url: 'dep_delete?id='+uuid,
+                        dataType: 'json',
+                        type: 'post',
+                        success:function(rtn){
+                            $.messager.alert("提示",rtn.message,'info',function() {
+                                // 刷新表格数据
+                                $('#grid').datagrid('reload');
+                            });
+                        }
+                    });
+                }
+            });
+        }
 
+        /**
+         * 修改部门
+         */
+        function edit(uuid){
+            //弹出窗口
+            $('#editDlg').dialog('open');
+
+            //清空表单内容
+            $('#editForm').form('clear');
+            method = "update";
+            //加载数据
+            $('#editForm').form('load','dep_get?id=' + uuid);
+        }
     </script>
 
 </head>

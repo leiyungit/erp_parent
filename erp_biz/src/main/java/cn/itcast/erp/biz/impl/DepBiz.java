@@ -47,4 +47,35 @@ public class DepBiz implements IDepBiz {
         this.depDao.add(dep);
     }
 
+    /**
+     * 删除
+     *
+     * @param uuid
+     */
+    @Override
+    public void delete(Long uuid) {
+        this.depDao.delete(uuid);
+    }
+
+    /**
+     * 通过编号查询对象
+     *
+     * @param uuid
+     * @return
+     */
+    @Override
+    public Dep get(Long uuid) {
+        return this.depDao.get(uuid);
+    }
+
+    /**
+     * 更新
+     *
+     * @param dep
+     */
+    @Override
+    public void update(Dep dep) {
+        this.depDao.update(dep);
+    }
+
 }
