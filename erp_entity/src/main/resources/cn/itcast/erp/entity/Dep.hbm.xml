@@ -3,10 +3,17 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="cn.itcast.erp.entity.Dep" table="Dep" >
+        <!--
+        oracle数据库的配置
         <id name="uuid" >
-        	<!-- <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+        	 <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
         		<param name="sequence_name">DEP_SEQ</param>
-        	</generator> -->
+        	 </generator>
+        </id>-->
+        <!--  id 标签内不能加type="java.lang.Integer"-->
+        <id name="uuid" >
+            <column name="uuid" />
+            <generator class="identity" />
         </id>
         <property name="name" />    
         <property name="tele"></property>   

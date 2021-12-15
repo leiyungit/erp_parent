@@ -27,4 +27,24 @@ public class DepBiz implements IDepBiz {
 		return this.depDao.getList();
 	}
 
+    @Override
+    public List<Dep> getList(Dep dep1,int firstResult, int maxResults) {
+        return this.depDao.getList(dep1,firstResult,maxResults);
+    }
+
+    @Override
+    public long getCount(Dep dep1) {
+        return this.depDao.getCount(dep1);
+    }
+
+    /**
+     * 新增
+     *
+     * @param dep
+     */
+    @Override
+    public void add(Dep dep) {
+        this.depDao.add(dep);
+    }
+
 }
