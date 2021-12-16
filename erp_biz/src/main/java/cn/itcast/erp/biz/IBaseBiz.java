@@ -29,6 +29,13 @@ public interface IBaseBiz<T> {
     List<T> listByPage(T t1,T t2,Object param,int firstResult, int maxResults);
 
     /**
+     * 条件查询列表
+     * @param t1
+     * @return
+     */
+    public List<T> getList(T t1,T t2,Object param);
+
+    /**
      * 获取总记录数
      * @param t1
      * @return

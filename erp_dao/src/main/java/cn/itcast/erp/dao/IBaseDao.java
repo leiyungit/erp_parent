@@ -10,12 +10,19 @@ public interface IBaseDao<T> {
 
     /**
      * 条件查询 分页
-     * @param dep1
+     * @param t1
      * @param firstResult
      * @param maxResults
      * @return
      */
     List<T> getList(T t1,int firstResult, int maxResults);
+
+    /**
+     * 条件查询列表
+     * @param t1
+     * @return
+     */
+    List<T> getList(T t1,T t2,Object param);
     /**
      * 条件查询 分页
      * @param t1

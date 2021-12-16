@@ -38,6 +38,13 @@ public class BaseBiz<T> implements IBaseBiz<T> {
     }
 
     /**
+     * 条件查询
+     */
+    public List<T> getList(T t1,T t2,Object param) {
+        return baseDao.getList(t1,t2,param);
+    }
+
+    /**
      * 条件查询 分页
      *
      * @param t1

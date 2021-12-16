@@ -27,7 +27,7 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
         this.entityClass = (Class<T>)types[0];
     }
 
-    @Override
+
     public List<T> getList() {
         return (List<T>) this.getHibernateTemplate().loadAll(entityClass);
     }
@@ -38,10 +38,20 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
      * @param t1
      * @return
      */
-    @Override
     public List<T> getList(T t1, int firstResult, int maxResults) {
         //DetachedCriteria dc = getDetachedCriteria(t1);
         return this.listByPage(t1,null,null,firstResult,maxResults);
+    }
+
+    /**
+     * 条件查询列表
+     * @param t1
+     * @return
+     */
+    public List<T> getList(T t1,T t2,Object param){
+
+        DetachedCriteria dc = getDetachedCriteria(t1, t2, param);
+        return (List<T>) getHibernateTemplate().findByCriteria(dc);
     }
 
     @Override
@@ -93,6 +103,18 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
     @Override
     public void update(T t) {
         this.getHibernateTemplate().update(t);
+    }
+
+    /**
+     * 构建查询条件
+     * @param t1
+     * @param t2
+     * @param param
+     * @return
+     */
+    public DetachedCriteria getDetachedCriteria(T t1,T t2,Object param){
+
+        return null;
     }
 
     /**
