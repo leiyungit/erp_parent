@@ -1,21 +1,26 @@
-package cn.itcast.erp.dao;
+package cn.itcast.erp.biz;
 
 import cn.itcast.erp.entity.Dep;
 
 import java.util.List;
 
-public interface IBaseDao<T> {
+public interface IBaseBiz<T> {
 
+    /**
+     * 查询所有
+     * @return
+     */
     List<T> getList();
 
     /**
-     * 条件查询 分页
-     * @param dep1
+     * 分页查询
+     * @param t1
      * @param firstResult
      * @param maxResults
      * @return
      */
     List<T> getList(T t1,int firstResult, int maxResults);
+
     /**
      * 条件查询 分页
      * @param t1
@@ -24,19 +29,11 @@ public interface IBaseDao<T> {
     List<T> listByPage(T t1,T t2,Object param,int firstResult, int maxResults);
 
     /**
-     * 记录条件查询的总记录数
+     * 获取总记录数
      * @param t1
      * @return
      */
     long getCount(T t1);
-
-    /**
-     * 记录条件查询的总记录数
-     * @param t1
-     * @return
-     */
-    long getCount(T t1,T t2,Object param);
-
 
     /**
      * 新增
