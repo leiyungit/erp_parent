@@ -19,7 +19,7 @@ public class DepBiz extends BaseBiz<Dep> implements IDepBiz {
 	
 	public void setDepDao(IDepDao depDao) {
 		this.depDao = depDao;
-		super.setBaseDao(depDao);
+		super.setBaseDao(this.depDao);
 	}
 
 /*
