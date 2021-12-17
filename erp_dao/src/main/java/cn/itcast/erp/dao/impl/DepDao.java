@@ -16,7 +16,7 @@ public class DepDao extends BaseDao<Dep> implements IDepDao {
 	}*/
 
 
-	public DetachedCriteria getDetachedCriteria(Dep dep1){
+	public DetachedCriteria getDetachedCriteria(Dep dep1,Dep dep2,Object param){
         DetachedCriteria dc = DetachedCriteria.forClass(Dep.class);
         if(null != dep1){
             if(null != dep1.getName() && dep1.getName().trim().length()>0){

@@ -56,7 +56,7 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
     @Override
     public List<T> listByPage(T t1, T t2, Object param, int firstResult, int maxResults) {
-        DetachedCriteria dc = getDetachedCriteria(t1);
+        DetachedCriteria dc = getDetachedCriteria(t1, t2, param);
         return (List<T>) this.getHibernateTemplate().findByCriteria(dc,firstResult,maxResults);
     }
 
@@ -68,7 +68,7 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
      */
     @Override
     public long getCount(T t1) {
-        DetachedCriteria dc = getDetachedCriteria(t1);
+        DetachedCriteria dc = getDetachedCriteria(t1,null,null);
         dc.setProjection(Projections.rowCount());
         List<Long> list = (List<Long>)this.getHibernateTemplate().findByCriteria(dc);
         return list.get(0);
@@ -76,8 +76,10 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
     @Override
     public long getCount(T t1, T t2, Object param) {
-        // TODO Auto-generated method stub
-        return 0;
+        DetachedCriteria dc = getDetachedCriteria(t1,t2,param);
+        dc.setProjection(Projections.rowCount());
+        List<Long> list = (List<Long>)this.getHibernateTemplate().findByCriteria(dc);
+        return list.get(0);
     }
 
     @Override

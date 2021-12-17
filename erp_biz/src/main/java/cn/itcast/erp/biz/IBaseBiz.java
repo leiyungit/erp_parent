@@ -40,7 +40,7 @@ public interface IBaseBiz<T> {
      * @param t1
      * @return
      */
-    long getCount(T t1);
+    long getCount(T t1,T t2, Object param);
 
     /**
      * 新增

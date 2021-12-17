@@ -66,8 +66,8 @@ public class BaseBiz<T> implements IBaseBiz<T> {
      * @return
      */
     @Override
-    public long getCount(T t1) {
-        return this.baseDao.getCount(t1);
+    public long getCount(T t1,T t2, Object param) {
+        return this.baseDao.getCount(t1,t2,param);
     }
 
     /**
