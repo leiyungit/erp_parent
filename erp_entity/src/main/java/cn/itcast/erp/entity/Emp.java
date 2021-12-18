@@ -19,7 +19,7 @@ public class Emp {
 	private String address;//联系地址
 	private java.util.Date birthday;//出生年月日
 	// private Long depuuid;//部门编号
-    private Dep dep;
+    private Dep dep; //部门 需配置xml映射
 
 	public Long getUuid() {		
 		return uuid;

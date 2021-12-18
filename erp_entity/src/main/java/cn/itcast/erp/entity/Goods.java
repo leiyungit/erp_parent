@@ -11,7 +11,24 @@ public class Goods {
     private String unit;//计量单位
     private Double inprice;//进货价格
     private Double outprice;//销售价格
-    private Long goodstypeuuid;//商品类型
+    // private Long goodstypeuuid;//商品类型
+    private Goodstype goodstype; //商品类型  需配置xml映射
+
+    /*public Long getGoodstypeuuid() {
+        return goodstypeuuid;
+    }
+
+    public void setGoodstypeuuid(Long goodstypeuuid) {
+        this.goodstypeuuid = goodstypeuuid;
+    }*/
+
+    public Goodstype getGoodstype() {
+        return goodstype;
+    }
+
+    public void setGoodstype(Goodstype goodstype) {
+        this.goodstype = goodstype;
+    }
 
     public Long getUuid() {
         return uuid;
@@ -54,12 +71,6 @@ public class Goods {
     }
     public void setOutprice(Double outprice) {
         this.outprice = outprice;
-    }
-    public Long getGoodstypeuuid() {
-        return goodstypeuuid;
-    }
-    public void setGoodstypeuuid(Long goodstypeuuid) {
-        this.goodstypeuuid = goodstypeuuid;
     }
 
 }

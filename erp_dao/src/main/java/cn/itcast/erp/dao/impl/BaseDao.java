@@ -89,6 +89,7 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
         this.getHibernateTemplate().save(t);
     }
 
+    // todo: 需要判断是否有关联，比如删除部门前，如果该部门已经被员工引用了，则不允许删除
     @Override
     public void delete(Long uuid) {
          /*Dep t = new Dep();

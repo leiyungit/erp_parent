@@ -165,7 +165,18 @@ public class BaseAction<T> {
         Map<String, Object> map = JSON.parseObject(jsonString);
         Map<String, Object> result = new HashMap<>();
         for (String key : map.keySet()) {
-            result.put(prefix + "." + key, map.get(key));
+            if(map.get(key) instanceof Map){
+                System.out.println("========mapData");
+                Map<String,Object> map2 = (Map)map.get(key);
+                for (String key2 : map2.keySet()) {
+                    result.put(prefix + "." + key+"."+key2, map2.get(key2));
+                }
+                System.out.println(result);
+            }
+            else{
+                result.put(prefix + "." + key, map.get(key));
+            }
+
         }
         return JSON.toJSONString(result);
     }

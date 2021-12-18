@@ -5,8 +5,9 @@ CREATE DATABASE  `erpdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_c
 
 USE erpdb
 
+PS: linux环境中，mysql5.7+ 表名区分大小写，需要修改配置文件，由于已经存在其他库表，导致无法添加配置
 /*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
+/* DBMS name:      MySQL 5.7                                    */
 /* Created on:     2021/12/2 13:21:44                           */
 /*==============================================================*/
 
@@ -14,7 +15,7 @@ USE erpdb
 /*==============================================================*/
 /* Table: DEP                                                   */
 /*==============================================================*/
-CREATE TABLE DEP
+CREATE TABLE dep
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    NAME                 VARCHAR(30) COMMENT '部门名称',
@@ -22,12 +23,12 @@ CREATE TABLE DEP
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE DEP COMMENT '部门';
+ALTER TABLE dep COMMENT '部门';
 
 /*==============================================================*/
 /* Table: EMP                                                   */
 /*==============================================================*/
-CREATE TABLE EMP
+CREATE TABLE emp
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    USERNAME             VARCHAR(15) COMMENT '登陆名',
@@ -42,12 +43,12 @@ CREATE TABLE EMP
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE EMP COMMENT '员工';
+ALTER TABLE emp COMMENT '员工';
 
 /*==============================================================*/
 /* Table: EMP_ROLE                                              */
 /*==============================================================*/
-CREATE TABLE EMP_ROLE
+CREATE TABLE emp_role
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    EMPUUID              BIGINT COMMENT '员工编号',
@@ -55,12 +56,12 @@ CREATE TABLE EMP_ROLE
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE EMP_ROLE COMMENT '员工角色';
+ALTER TABLE emp_role COMMENT '员工角色';
 
 /*==============================================================*/
 /* Table: GOODS                                                 */
 /*==============================================================*/
-CREATE TABLE GOODS
+CREATE TABLE goods
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    NAME                 VARCHAR(30) COMMENT '名称',
@@ -73,24 +74,24 @@ CREATE TABLE GOODS
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE GOODS COMMENT '商品';
+ALTER TABLE goods COMMENT '商品';
 
 /*==============================================================*/
 /* Table: GOODSTYPE                                             */
 /*==============================================================*/
-CREATE TABLE GOODSTYPE
+CREATE TABLE goodstype
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '商品类型编号',
    NAME                 VARCHAR(30) COMMENT '商品类型名称',
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE GOODSTYPE COMMENT '商品分类';
+ALTER TABLE goodstype COMMENT '商品分类';
 
 /*==============================================================*/
 /* Table: INVENTORY                                             */
 /*==============================================================*/
-CREATE TABLE INVENTORY
+CREATE TABLE inventory
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    GOODSUUID            BIGINT COMMENT '商品',
@@ -106,12 +107,12 @@ CREATE TABLE INVENTORY
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE INVENTORY COMMENT '盘盈盘亏';
+ALTER TABLE inventory COMMENT '盘盈盘亏';
 
 /*==============================================================*/
 /* Table: MENU                                                  */
 /*==============================================================*/
-CREATE TABLE MENU
+CREATE TABLE menu
 (
    MENUID               VARCHAR(20) NOT NULL COMMENT '菜单ID',
    MENUNAME             VARCHAR(30) COMMENT '菜单名称',
@@ -121,12 +122,12 @@ CREATE TABLE MENU
    PRIMARY KEY (MENUID)
 );
 
-ALTER TABLE MENU COMMENT '菜单';
+ALTER TABLE menu COMMENT '菜单';
 
 /*==============================================================*/
 /* Table: ORDERDETAIL                                           */
 /*==============================================================*/
-CREATE TABLE ORDERDETAIL
+CREATE TABLE orderdetail
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
@@ -142,12 +143,12 @@ CREATE TABLE ORDERDETAIL
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE ORDERDETAIL COMMENT '订单明细';
+ALTER TABLE orderdetail COMMENT '订单明细';
 
 /*==============================================================*/
 /* Table: ORDERS                                                */
 /*==============================================================*/
-CREATE TABLE ORDERS
+CREATE TABLE orders
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    CREATETIME           DATETIME COMMENT '生成日期',
@@ -166,12 +167,12 @@ CREATE TABLE ORDERS
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE ORDERS COMMENT '订单';
+ALTER TABLE orders COMMENT '订单';
 
 /*==============================================================*/
 /* Table: RETURNORDERDETAIL                                     */
 /*==============================================================*/
-CREATE TABLE RETURNORDERDETAIL
+CREATE TABLE returnorderdetail
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
@@ -187,12 +188,12 @@ CREATE TABLE RETURNORDERDETAIL
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE RETURNORDERDETAIL COMMENT '退货订单明细';
+ALTER TABLE returnorderdetail COMMENT '退货订单明细';
 
 /*==============================================================*/
 /* Table: RETURNORDERS                                          */
 /*==============================================================*/
-CREATE TABLE RETURNORDERS
+CREATE TABLE returnorders
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    CREATETIME           DATETIME COMMENT '生成日期',
@@ -210,24 +211,24 @@ CREATE TABLE RETURNORDERS
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE RETURNORDERS COMMENT '退货订单';
+ALTER TABLE returnorders COMMENT '退货订单';
 
 /*==============================================================*/
 /* Table: ROLE                                                  */
 /*==============================================================*/
-CREATE TABLE ROLE
+CREATE TABLE role
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    NAME                 VARCHAR(30) COMMENT '名称',
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE ROLE COMMENT '角色';
+ALTER TABLE role COMMENT '角色';
 
 /*==============================================================*/
 /* Table: ROLE_MENU                                             */
 /*==============================================================*/
-CREATE TABLE ROLE_MENU
+CREATE TABLE role_menu
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    ROLEUUID             BIGINT,
@@ -235,12 +236,12 @@ CREATE TABLE ROLE_MENU
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE ROLE_MENU COMMENT '角色菜单';
+ALTER TABLE role_menu COMMENT '角色菜单';
 
 /*==============================================================*/
 /* Table: STORE                                                 */
 /*==============================================================*/
-CREATE TABLE STORE
+CREATE TABLE store
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    NAME                 VARCHAR(30) COMMENT '名称',
@@ -248,12 +249,12 @@ CREATE TABLE STORE
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE STORE COMMENT '仓库';
+ALTER TABLE store COMMENT '仓库';
 
 /*==============================================================*/
 /* Table: STOREDETAIL                                           */
 /*==============================================================*/
-CREATE TABLE STOREDETAIL
+CREATE TABLE storedetail
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    STOREUUID            BIGINT COMMENT '仓库编号',
@@ -262,12 +263,12 @@ CREATE TABLE STOREDETAIL
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE STOREDETAIL COMMENT '仓库库存';
+ALTER TABLE storedetail COMMENT '仓库库存';
 
 /*==============================================================*/
 /* Table: STOREOPER                                             */
 /*==============================================================*/
-CREATE TABLE STOREOPER
+CREATE TABLE storeoper
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    EMPUUID              BIGINT COMMENT '操作员工编号',
@@ -279,12 +280,12 @@ CREATE TABLE STOREOPER
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE STOREOPER COMMENT '仓库操作记录';
+ALTER TABLE storeoper COMMENT '仓库操作记录';
 
 /*==============================================================*/
 /* Table: SUPPLIER                                              */
 /*==============================================================*/
-CREATE TABLE SUPPLIER
+CREATE TABLE supplier
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    NAME                 VARCHAR(30) COMMENT '名称',
@@ -296,5 +297,5 @@ CREATE TABLE SUPPLIER
    PRIMARY KEY (UUID)
 );
 
-ALTER TABLE SUPPLIER COMMENT '供应商';
+ALTER TABLE supplier COMMENT '供应商';
 
