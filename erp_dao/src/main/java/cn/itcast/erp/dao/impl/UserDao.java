@@ -34,4 +34,19 @@ public class UserDao extends BaseDao<User> implements IUserDao {
     public boolean signUp(String username, String pwd) {
         return false;
     }
+
+    /**
+     * 修改密码
+     *
+     * @param username
+     * @param pwd
+     * @return
+     */
+    @Override
+    public boolean updatePwd(String username, String pwd) {
+        String hql="update Emp set pwd=? where username=?";
+        int line = this.getHibernateTemplate().bulkUpdate(hql, pwd, username);
+        System.out.println("修改秘密，更新行数："+line);
+        return line>0?true:false;
+    }
 }

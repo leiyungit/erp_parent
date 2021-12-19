@@ -42,9 +42,10 @@ public class SupplierDao extends BaseDao<Supplier> implements ISupplierDao {
 			{
 				dc.add(Restrictions.like("email", supplier1.getEmail(), MatchMode.ANYWHERE));			
 			}
+			// 区分供应商或客户
 			if(supplier1.getType()!=null &&  supplier1.getType().trim().length()>0)
 			{
-				dc.add(Restrictions.like("type", supplier1.getType(), MatchMode.ANYWHERE));			
+				dc.add(Restrictions.eq("type", supplier1.getType()));
 			}
 		
 		}		

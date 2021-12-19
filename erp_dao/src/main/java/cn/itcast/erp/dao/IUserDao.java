@@ -18,4 +18,11 @@ public interface IUserDao  extends IBaseDao<User> {
     boolean signUp(String username, String pwd);
 
 
+    /**
+     * 修改密码
+     * @param username
+     * @param pwd
+     * @return
+     */
+    boolean updatePwd(String username, String pwd);
 }

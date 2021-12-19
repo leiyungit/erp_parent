@@ -1,5 +1,6 @@
 package cn.itcast.erp.biz.impl;
 import cn.itcast.erp.biz.IEmpBiz;
+import cn.itcast.erp.biz.utils.DataCrypto;
 import cn.itcast.erp.dao.IEmpDao;
 import cn.itcast.erp.entity.Emp;
 /**
@@ -20,5 +21,15 @@ public class EmpBiz extends BaseBiz<Emp> implements IEmpBiz {
 	@Override
 	public Emp findByUsername(String username) {
 		return empDao.findByUsername(username);
+	}
+
+	/**
+	 * 新增员工时初始化密码
+	 * @param emp
+	 */
+	@Override
+	public void add(Emp emp){
+		emp.setPwd(DataCrypto.encrypt(emp.getUsername(),emp.getUsername()));
+		super.add(emp);
 	}
 }

@@ -3,9 +3,11 @@ package cn.itcast.erp.action;
 import cn.itcast.erp.biz.IBaseBiz;
 import cn.itcast.erp.biz.IDepBiz;
 import cn.itcast.erp.entity.Dep;
+import cn.itcast.erp.entity.Emp;
 import cn.itcast.erp.utils.ResultUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.opensymphony.xwork2.ActionContext;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
@@ -153,6 +155,10 @@ public class BaseAction<T> {
             e.printStackTrace();
             ResultUtil.ajaxReturn(false, "修改失败");
         }
+    }
+
+    public Emp getLoginUser(){
+        return (Emp) ActionContext.getContext().getSession().get("login");
     }
 
     /**

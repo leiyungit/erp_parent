@@ -330,14 +330,61 @@ function msgShow(title, msgString, msgType) {
 
 //设置登录窗口
 function openPwd() {
-    $('#w').window({
+    $('#w').dialog({
         title: '修改密码',
         width: 300,
-        modal: true,
-        shadow: true,
-        closed: true,
-        height: 160,
-        resizable:false
+		height: 180,
+		modal: true,
+		closed: true,
+		buttons:[{
+			text:'保存',
+			iconCls: 'icon-save',
+			handler:function(){
+				//提交保存
+				var oldPwd = $('#txtOldPass').val();
+				var newPwd = $('#txtNewPass').val();
+				var rePwd = $('#txtRePass').val();
+
+				if(oldPwd == ''){
+					$.messager.alert('提示','原密码不能为空','info');
+					return;
+				}
+
+				if(newPwd == ''){
+					$.messager.alert('提示','新密码不能为空','info');
+					return;
+				}
+
+				if(rePwd != newPwd){
+					$.messager.alert('提示','确认密码不一致','info');
+					return;
+				}
+
+				$.ajax({
+					url: 'user_updatePwd',
+					data: {oldPwd: oldPwd, newPwd:newPwd},
+					dataType: 'json',
+					type: 'post',
+					success:function(rtn){
+						$.messager.alert('提示',rtn.message, 'info',function(){
+							if(rtn.success){
+								$('#w').dialog('close');
+								//清空内容
+								$('#txtOldPass').val('');
+								$('#txtNewPass').val('');
+								$('#txtRePass').val('');
+							}
+						});
+					}
+				});
+			}
+		},{
+			text:'关闭',
+			iconCls: 'icon-cancel',
+			handler:function(){
+
+			}
+		}]
     });
 }
 //关闭登录窗口
@@ -380,7 +427,7 @@ $(function() {
     openPwd();
 
     $('#editpass').click(function() {
-        $('#w').window('open');
+        $('#w').dialog('open');
     });
 
     $('#btnEp').click(function() {

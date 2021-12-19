@@ -4,10 +4,12 @@ var rownumbers = false; // 显示一个行号列
 var columns = [];
 var width = 300;
 var height = 200;
+var listParam = ""; // 供应商 或 客户 类型，列表参数
+var saveParam = "";  // 供应商 或 客户 类型，保存参数
 $(function () {
     //$.messager.alert("提示","欢迎来到....");
     $('#grid').datagrid({
-        url: name + '_listByPage',
+        url: name + '_listByPage'+listParam,
         columns: columns,
         pagination: true, // 在DataGrid控件底部显示分页工具栏
         singleSelect: true, // 只允许选择一行
@@ -62,7 +64,7 @@ $(function () {
         var formData = $('#editForm').serializeJSON();
 
         $.ajax({
-            url: name + '_' + method,
+            url: name + '_' + method + saveParam,
             data: formData,
             dataType: 'json',
             type: 'post',

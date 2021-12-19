@@ -22,7 +22,7 @@ INSERT INTO dep VALUES (13,'运营部', '555555');
 INSERT INTO role VALUES (1,'超级管理员');
 
 
--- 用户表--
+-- 用户表-- admin 密码：  3ef7164d1f6167cb9f2658c07d3c2f0a
 INSERT INTO emp VALUES (1,'admin','admin','超级管理员',1,'admin@itcast.cn','12345678','建材城西路中腾商务大厦','1949-10-01',1);
 INSERT INTO emp VALUES (2,'sunwukong','sunwukong','孙悟空',1,'swk@itcast.cn','12345678','花果山水帘洞11-2','1949-10-01',2);
 INSERT INTO emp VALUES (3,'tangseng','tangseng','唐僧',1,'ts@itcast.cn','12345678','东?链筇菩∏?0-14','1949-10-01',2);

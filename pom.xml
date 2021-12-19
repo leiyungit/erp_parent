@@ -14,10 +14,10 @@
   
   <!-- 定义版本常量 -->
   <properties>
-  	<spring.version>4.2.4.RELEASE</spring.version>
-  	<struts.version>2.3.24</struts.version>
-  	<hibernate.version>5.0.7.Final</hibernate.version>
-  	
+  	  <spring.version>4.2.4.RELEASE</spring.version>
+	  <struts.version>2.3.24</struts.version>
+  	  <hibernate.version>5.0.7.Final</hibernate.version>
+	  <shiro.ver>1.2.3</shiro.ver>
   	<!--追加  -->
   	<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -139,6 +139,27 @@
   		<artifactId>fastjson</artifactId>
   		<version>1.2.8</version>
   	</dependency>
+	  <!--加密-->
+	  <dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-core</artifactId>
+		  <version>${shiro.ver}</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-web</artifactId>
+		  <version>${shiro.ver}</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-spring</artifactId>
+		  <version>${shiro.ver}</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-aspectj</artifactId>
+		  <version>${shiro.ver}</version>
+	  </dependency>
   </dependencies>
   	<!-- 版本锁定  -->
     <dependencyManagement>
