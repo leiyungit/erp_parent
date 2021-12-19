@@ -61,6 +61,13 @@ public interface IBaseBiz<T> {
     T get(Long uuid);
 
     /**
+     * 通过字符串编号查询对象
+     * @param uuid
+     * @return
+     */
+    T get(String uuid);
+
+    /**
      * 更新
      */
     void update(T t);

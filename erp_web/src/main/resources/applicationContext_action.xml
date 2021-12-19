@@ -73,10 +73,14 @@
         <property name="supplierBiz" ref="supplierBiz"></property>
     </bean>
 
-    <!-- 登陆/退出 -->
+   <!-- &lt;!&ndash; 登陆/退出 &ndash;&gt;
     <bean id="loginAction" class="cn.itcast.erp.action.LoginAction" scope="prototype">
         <property name="empBiz" ref="empBiz"></property>
+    </bean>-->
+    <!-- 用户 登陆/退出 -->
+    <bean id="userAction" class="cn.itcast.erp.action.UserAction" scope="prototype">
+        <property name="userBiz" ref="userBiz"></property>
+        <property name="empBiz" ref="empBiz"></property>
     </bean>
-	
 </beans>
 	

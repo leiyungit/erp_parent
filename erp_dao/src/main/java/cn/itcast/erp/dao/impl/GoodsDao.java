@@ -39,7 +39,8 @@ public class GoodsDao extends BaseDao<Goods> implements IGoodsDao {
 				dc.add(Restrictions.like("unit", goods1.getUnit(), MatchMode.ANYWHERE));			
 			}
 		
-		}		
+		}
+		// todo: 1.价格区间查询；2.商品类型查询
 		return dc;
 	}
 	

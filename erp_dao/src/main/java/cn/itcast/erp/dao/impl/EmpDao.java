@@ -1,9 +1,13 @@
 package cn.itcast.erp.dao.impl;
+import cn.itcast.erp.dao.IUserDao;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import cn.itcast.erp.dao.IEmpDao;
 import cn.itcast.erp.entity.Emp;
+
+import java.util.List;
+
 /**
  * 数据访问类
  * @author Administrator
@@ -65,7 +69,20 @@ public class EmpDao extends BaseDao<Emp> implements IEmpDao {
 		}
 		return dc;
 	}
-	
-	
+
+	/**
+	 * 根据用户名查询用户信息
+	 *
+	 * @param username
+	 * @return
+	 */
+	@Override
+	public Emp findByUsername(String username) {
+		List<Emp> list = (List<Emp>) this.getHibernateTemplate().find("from Emp where username=?", username);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
 }
 

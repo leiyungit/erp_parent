@@ -35,7 +35,8 @@
         <!-- 供应商 -->
         <action name="supplier_*" class="supplierAction" method="{1}"></action>
 
-        <!-- 登陆/退出 -->
-        <action name="login_*" class="loginAction" method="{1}"></action>
+        <!-- 用户 （登陆/退出） -->
+        <!--<action name="login_*" class="loginAction" method="{1}"></action>-->
+        <action name="user_*" class="userAction" method="{1}"></action>
     </package>
 </struts>

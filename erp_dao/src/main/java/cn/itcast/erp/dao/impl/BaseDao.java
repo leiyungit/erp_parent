@@ -103,6 +103,17 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
         return this.getHibernateTemplate().get(entityClass,uuid);
     }
 
+    /**
+     * 通过字符串编号查询对象
+     *
+     * @param uuid
+     * @return
+     */
+    @Override
+    public T get(String uuid) {
+        return this.getHibernateTemplate().get(entityClass,uuid);
+    }
+
     @Override
     public void update(T t) {
         this.getHibernateTemplate().update(t);

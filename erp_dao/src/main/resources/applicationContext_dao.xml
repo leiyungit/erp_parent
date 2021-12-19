@@ -72,6 +72,10 @@
     <bean id="supplierDao" class="cn.itcast.erp.dao.impl.SupplierDao">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <!-- 登录 -->
+    <bean id="userDao" class="cn.itcast.erp.dao.impl.UserDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 	<!-- <import resource="classpath:applicationContext_datasource.xml"/> -->
 </beans>
 	

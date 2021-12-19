@@ -1,4 +1,7 @@
 package cn.itcast.erp.entity;
+
+import java.util.List;
+
 /**
  * 实体类
  * @author Administrator *
@@ -8,7 +11,8 @@ public class Menu {
 	private String menuname;//菜单名称
 	private String icon;//图标
 	private String url;//URL
-	private String pid;//上级菜单ID
+	private List<Emp> menus;
+	// private String pid;//上级菜单ID
 
 	public String getMenuid() {		
 		return menuid;
@@ -34,11 +38,12 @@ public class Menu {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getPid() {		
-		return pid;
+	public List<Emp> getMenus() {
+		return menus;
 	}
-	public void setPid(String pid) {
-		this.pid = pid;
+	public void setMenus(List<Emp> menus) {
+		this.menus = menus;
 	}
+
 
 }

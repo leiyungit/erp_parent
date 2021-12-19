@@ -102,6 +102,17 @@ public class BaseBiz<T> implements IBaseBiz<T> {
     }
 
     /**
+     * 通过字符串编号查询对象
+     *
+     * @param uuid
+     * @return
+     */
+    @Override
+    public T get(String uuid) {
+        return this.baseDao.get(uuid);
+    }
+
+    /**
      * 更新
      *
      * @param t

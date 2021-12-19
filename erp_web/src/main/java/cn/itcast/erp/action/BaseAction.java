@@ -3,6 +3,7 @@ package cn.itcast.erp.action;
 import cn.itcast.erp.biz.IBaseBiz;
 import cn.itcast.erp.biz.IDepBiz;
 import cn.itcast.erp.entity.Dep;
+import cn.itcast.erp.utils.ResultUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.struts2.ServletActionContext;
@@ -75,7 +76,7 @@ public class BaseAction<T> {
         System.out.println("===========list");
         List<T> list = baseBiz.getList();
         String stringList = JSON.toJSONString(list, SerializerFeature.DisableCircularReferenceDetect);
-        write(stringList);
+        ResultUtil.write(stringList);
     }
 
     // http://localhost:8080/erp/dep_getList?dep1.name=%E9%83%A8&dep1.tele=5
@@ -86,7 +87,7 @@ public class BaseAction<T> {
         mapData.put("total", this.baseBiz.getCount(t1, t2, param));
         mapData.put("rows", list);
         String stringList = JSON.toJSONString(mapData, SerializerFeature.DisableCircularReferenceDetect);
-        write(stringList);
+        ResultUtil.write(stringList);
     }
 
     /**
@@ -108,7 +109,7 @@ public class BaseAction<T> {
         map.put("success", true);
         map.put("message", "新增成功");
         String stringList = JSON.toJSONString(map);
-        write(stringList);
+        ResultUtil.write(stringList);
     }
 
     /**
@@ -128,10 +129,10 @@ public class BaseAction<T> {
         System.out.println("delete=>id:" + id);
         try {
             baseBiz.delete(id);
-            ajaxReturn(true, "删除成功");
+            ResultUtil.ajaxReturn(true, "删除成功");
         } catch (Exception e) {
             e.printStackTrace();
-            ajaxReturn(false, "删除失败");
+            ResultUtil.ajaxReturn(false, "删除失败");
         }
     }
 
@@ -140,17 +141,17 @@ public class BaseAction<T> {
         T t = baseBiz.get(id);
         String stringList = JSON.toJSONStringWithDateFormat(t,"yyyy-MM-dd");
         String jsonString = mapData(stringList, "t");
-        write(jsonString);
+        ResultUtil.write(jsonString);
     }
 
     public void update() {
         System.out.println(t);
         try {
             baseBiz.update(t);
-            ajaxReturn(true, "修改成功");
+            ResultUtil.ajaxReturn(true, "修改成功");
         } catch (Exception e) {
             e.printStackTrace();
-            ajaxReturn(false, "修改失败");
+            ResultUtil.ajaxReturn(false, "修改失败");
         }
     }
 
@@ -181,7 +182,7 @@ public class BaseAction<T> {
         return JSON.toJSONString(result);
     }
 
-    public void ajaxReturn(boolean success, String message) {
+    /*public void ajaxReturn(boolean success, String message) {
         //返回前端的JSON数据
         Map<String, Object> rtn = new HashMap<String, Object>();
         rtn.put("success", success);
@@ -197,5 +198,5 @@ public class BaseAction<T> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

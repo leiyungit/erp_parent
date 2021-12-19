@@ -72,5 +72,9 @@
     <bean id="supplierBiz" class="cn.itcast.erp.biz.impl.SupplierBiz">
         <property name="supplierDao" ref="supplierDao"></property>
     </bean>
+    <!-- 用户（登录等） -->
+    <bean id="userBiz" class="cn.itcast.erp.biz.impl.UserBiz">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
 </beans>
 	

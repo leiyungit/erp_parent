@@ -9,8 +9,12 @@
 
         <property name="menuname" /> 
         <property name="icon" /> 
-        <property name="url" /> 
-        <property name="pid" /> 
+        <property name="url" />
+        <!--<property name="pid" />-->
+        <bag name="menus">
+            <key column="pid"></key>
+            <one-to-many class="cn.itcast.erp.entity.Menu"></one-to-many>
+        </bag>
  
     </class>
 </hibernate-mapping>
