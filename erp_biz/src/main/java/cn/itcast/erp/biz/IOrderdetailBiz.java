@@ -6,7 +6,16 @@ import cn.itcast.erp.entity.Orderdetail;
  *
  */
 public interface IOrderdetailBiz extends IBaseBiz<Orderdetail>{
-	
-	
+
+    /**
+     * 采购入库
+     * @param uuid 采购明细编号
+     * @param storeUuid 仓库编号
+     * @param storeNum 入库数量
+     * @param empUuid 库管员编号
+     * @return 是否成功
+     */
+    boolean doInStore(Long uuid,Long storeUuid,Double storeNum,Long empUuid);
+
 }
 
