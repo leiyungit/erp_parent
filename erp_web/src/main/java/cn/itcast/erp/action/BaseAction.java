@@ -76,7 +76,7 @@ public class BaseAction<T> {
 
     public void list() {
         System.out.println("===========list");
-        List<T> list = baseBiz.getList();
+        List<T> list = baseBiz.getList(t1, t2, param);
         String stringList = JSON.toJSONString(list, SerializerFeature.DisableCircularReferenceDetect);
         ResultUtil.write(stringList);
     }

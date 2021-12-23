@@ -1,4 +1,7 @@
 package cn.itcast.erp.entity;
+
+import java.util.List;
+
 /**
  * 实体类
  * @author Administrator *
@@ -9,17 +12,54 @@ public class Orders {
 	private java.util.Date checktime;//审核日期
 	private java.util.Date starttime;//确认日期
 	private java.util.Date endtime;//入库或出库日期
-	private String type;//1:采购 2:销售
+	private Integer type;//1:采购 2:销售
 	private Long creater;//下单员
+    private String createrName;
 	private Long checker;//审核员
+    private String checkerName;
 	private Long starter;//采购员
+    private String starterName;
 	private Long ender;//库管员
+    private String enderName;
 	private Long supplieruuid;//供应商或客户
+    private String supplierName;
 	private Double totalmoney;//合计金额
-	private String state;//采购: 0:未审核 1:已审核, 2:已确认, 3:已入库；销售：0:未出库 1:已出库
+	private Integer state;//采购: 0:未审核 1:已审核, 2:已确认, 3:已入库；销售：0:未出库 1:已出库
 	private String waybillsn;//运单号
+    private List<Orderdetail> orderDetails; // 订单明细
 
-	public Long getUuid() {		
+    public String getCreaterName() {
+        return createrName;
+    }
+    public void setCreaterName(String createrName) {
+        this.createrName = createrName;
+    }
+    public String getCheckerName() {
+        return checkerName;
+    }
+    public void setCheckerName(String checkerName) {
+        this.checkerName = checkerName;
+    }
+    public String getStarterName() {
+        return starterName;
+    }
+    public void setStarterName(String starterName) {
+        this.starterName = starterName;
+    }
+    public String getEnderName() {
+        return enderName;
+    }
+    public void setEnderName(String enderName) {
+        this.enderName = enderName;
+    }
+    public String getSupplierName() {
+        return supplierName;
+    }
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    public Long getUuid() {
 		return uuid;
 	}
 	public void setUuid(Long uuid) {
@@ -49,10 +89,10 @@ public class Orders {
 	public void setEndtime(java.util.Date endtime) {
 		this.endtime = endtime;
 	}
-	public String getType() {		
+	public Integer getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 	public Long getCreater() {		
@@ -91,10 +131,10 @@ public class Orders {
 	public void setTotalmoney(Double totalmoney) {
 		this.totalmoney = totalmoney;
 	}
-	public String getState() {		
+	public Integer getState() {
 		return state;
 	}
-	public void setState(String state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 	public String getWaybillsn() {		
@@ -103,5 +143,29 @@ public class Orders {
 	public void setWaybillsn(String waybillsn) {
 		this.waybillsn = waybillsn;
 	}
-
+    public List<Orderdetail> getOrderDetails() {
+        return orderDetails;
+    }
+    public void setOrderDetails(List<Orderdetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "uuid=" + uuid +
+                ", createtime=" + createtime +
+                ", checktime=" + checktime +
+                ", starttime=" + starttime +
+                ", endtime=" + endtime +
+                ", type='" + type + '\'' +
+                ", creater=" + creater +
+                ", checker=" + checker +
+                ", starter=" + starter +
+                ", ender=" + ender +
+                ", supplieruuid=" + supplieruuid +
+                ", totalmoney=" + totalmoney +
+                ", state='" + state + '\'' +
+                ", waybillsn='" + waybillsn + '\'' +
+                '}';
+    }
 }

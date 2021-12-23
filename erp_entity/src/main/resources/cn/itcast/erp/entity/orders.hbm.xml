@@ -2,11 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="cn.itcast.erp.entity.Orders" table="orders" >
+    <class name="cn.itcast.erp.entity.Orders" table="orders"  >
         <id name="uuid" >
         	<generator class="native"></generator>
         </id>
-
         <property name="createtime" /> 
         <property name="checktime" /> 
         <property name="starttime" /> 
@@ -19,7 +18,11 @@
         <property name="supplieruuid" /> 
         <property name="totalmoney" /> 
         <property name="state" /> 
-        <property name="waybillsn" /> 
- 
+        <property name="waybillsn" />
+        <!-- 级联更新 inverse="true" 放弃管理外键-->
+        <bag name="orderDetails"  cascade="save-update" inverse="true" order-by="uuid"><!---->
+            <key column="ordersuuid"></key>
+            <one-to-many class="cn.itcast.erp.entity.Orderdetail"></one-to-many>
+        </bag>
     </class>
 </hibernate-mapping>

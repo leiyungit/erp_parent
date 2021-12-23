@@ -2,8 +2,6 @@ package cn.itcast.erp.biz.impl;
 
 import cn.itcast.erp.biz.IBaseBiz;
 import cn.itcast.erp.dao.IBaseDao;
-import cn.itcast.erp.entity.Dep;
-
 import java.util.List;
 
 public class BaseBiz<T> implements IBaseBiz<T> {

@@ -6,7 +6,21 @@ import cn.itcast.erp.entity.Orders;
  *
  */
 public interface IOrdersBiz extends IBaseBiz<Orders>{
-	
-	
+    /**
+     * 采购订单审核
+     * @param uuid
+     * @param empUuid
+     */
+    void doCheck(Long uuid, Long empUuid);
+
+    /**
+     * 采购订单确认
+     * @param uuid
+     * @param empUuid
+     */
+    void doStart(Long uuid, Long empUuid);
+
+
+    // void doInStore();
 }
 

@@ -1,7 +1,7 @@
 package cn.itcast.erp.biz.impl;
 
 import cn.itcast.erp.biz.IUserBiz;
-import cn.itcast.erp.biz.exception.ERPException;
+import cn.itcast.erp.biz.exception.ErpException;
 import cn.itcast.erp.biz.utils.DataCrypto;
 import cn.itcast.erp.dao.IUserDao;
 import cn.itcast.erp.entity.User;
@@ -30,6 +30,7 @@ public class UserBiz extends BaseBiz<User> implements IUserBiz {
      */
     @Override
     public boolean signIn(String username, String pwd) {
+        System.out.println(DataCrypto.encrypt(pwd,username));
         return userDao.signIn(username, DataCrypto.encrypt(pwd,username));
     }
 
@@ -62,7 +63,7 @@ public class UserBiz extends BaseBiz<User> implements IUserBiz {
             logger.error("旧秘密不正确aaa");
             System.out.println(encrypt);
             //logger.error("旧秘密不正确, username:{}, pwd:{}",username,encrypt);
-            throw new ERPException("旧秘密不正确");
+            throw new ErpException("旧秘密不正确");
         }
         return this.userDao.updatePwd(username, DataCrypto.encrypt(newPwd, username));
     }

@@ -2,11 +2,10 @@ package cn.itcast.erp.action;
 
 import cn.itcast.erp.biz.IEmpBiz;
 import cn.itcast.erp.biz.IUserBiz;
-import cn.itcast.erp.biz.exception.ERPException;
+import cn.itcast.erp.biz.exception.ErpException;
 import cn.itcast.erp.entity.Emp;
 import cn.itcast.erp.entity.User;
 import cn.itcast.erp.utils.ResultUtil;
-import com.alibaba.fastjson.JSON;
 import com.opensymphony.xwork2.ActionContext;
 
 public class UserAction extends BaseAction<User> {
@@ -111,7 +110,7 @@ public class UserAction extends BaseAction<User> {
             }else{
                 ResultUtil.ajaxReturnFail("修改密码失败");
             }
-        } catch (ERPException ex){
+        } catch (ErpException ex){
             ex.printStackTrace();
             ResultUtil.ajaxReturnFail(ex.getMessage());
         }

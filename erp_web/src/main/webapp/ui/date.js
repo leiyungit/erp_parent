@@ -26,4 +26,16 @@ Date.prototype.Format = function(fmt)
     if(new RegExp("("+ k +")").test(fmt))   
   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
   return fmt;   
-} 
+}
+
+/**
+ * 日期格式化器
+ * @param value 日期原格式，如：1640075008000
+ * @returns {string} yyyy-MM-dd
+ */
+function formatDate(value){
+    if(typeof(value) == 'undefined'){
+        return "";
+    }
+    return new Date(value).Format("yyyy-MM-dd")
+}

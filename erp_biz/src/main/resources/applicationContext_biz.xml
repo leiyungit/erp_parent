@@ -40,9 +40,14 @@
     <bean id="orderdetailBiz" class="cn.itcast.erp.biz.impl.OrderdetailBiz">
         <property name="orderdetailDao" ref="orderdetailDao"></property>
     </bean>
-    <!-- 订单 -->
+    <!-- 订单  -->
     <bean id="ordersBiz" class="cn.itcast.erp.biz.impl.OrdersBiz">
         <property name="ordersDao" ref="ordersDao"></property>
+        <property name="empDao" ref="empDao"></property>
+        <property name="supplierDao" ref="supplierDao"></property>
+        <!--构造函数注入
+        <constructor-arg name="ordersDao" ref="ordersDao"></constructor-arg>
+        <constructor-arg name="goodsDao" ref="goodsDao"></constructor-arg>-->
     </bean>
     <!-- 退货订单明细 -->
     <bean id="returnorderdetailBiz" class="cn.itcast.erp.biz.impl.ReturnorderdetailBiz">

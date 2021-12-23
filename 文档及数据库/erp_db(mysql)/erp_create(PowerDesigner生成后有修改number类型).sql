@@ -133,12 +133,13 @@ CREATE TABLE orderdetail
    GOODSUUID            BIGINT COMMENT '商品编号',
    GOODSNAME            VARCHAR(50) COMMENT '商品名称',
    PRICE                NUMERIC(10,2) COMMENT '价格',
-   NUM                  NUMERIC COMMENT '数量',
+   NUM                  NUMERIC(10,2) COMMENT '数量',
    MONEY                NUMERIC(10,2) COMMENT '金额',
    ENDTIME              DATETIME COMMENT '结束日期',
    ENDER                BIGINT COMMENT '库管员',
    STOREUUID            BIGINT COMMENT '仓库编号',
-   STATE                CHAR(1) COMMENT '采购：0=未入库，1=已入库  销售：0=未出库，1=已出库',
+   STORENUM             NUMERIC(10,2) COMMENT '入库/出库数量',
+   STATE                BIGINT(1) COMMENT '采购：0=未入库，1=部分入库，2=已入库  销售：0=未出库，1=部分出库，2=已出库',
    ORDERSUUID           BIGINT COMMENT '订单编号',
    PRIMARY KEY (UUID)
 );
@@ -155,14 +156,14 @@ CREATE TABLE orders
    CHECKTIME            DATETIME COMMENT '审核日期',
    STARTTIME            DATETIME COMMENT '确认日期',
    ENDTIME              DATETIME COMMENT '入库或出库日期',
-   TYPE                 CHAR(1) COMMENT '1:采购 2:销售',
+   TYPE                 BIGINT(1) COMMENT '1:采购 2:销售',
    CREATER              BIGINT COMMENT '下单员',
    CHECKER              BIGINT COMMENT '审核员',
    STARTER              BIGINT COMMENT '采购员',
    ENDER                BIGINT COMMENT '库管员',
    SUPPLIERUUID         BIGINT COMMENT '供应商或客户',
    TOTALMONEY           NUMERIC(10,2) COMMENT '合计金额',
-   STATE                CHAR(1) COMMENT '采购: 0:未审核 1:已审核, 2:已确认, 3:已入库；销售：0:未出库 1:已出库',
+   STATE                BIGINT(2) COMMENT '采购: 0:未审核 1:已审核, 2:已确认, 3:已入库；销售：0:未出库 1:已出库',
    WAYBILLSN            VARCHAR(50) COMMENT '运单号',
    PRIMARY KEY (UUID)
 );
