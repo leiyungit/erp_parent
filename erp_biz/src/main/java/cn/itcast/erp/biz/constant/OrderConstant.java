@@ -4,6 +4,10 @@ package cn.itcast.erp.biz.constant;
  * 订单相关的常量
  */
 public interface OrderConstant {
+
+    static final String OrderPoIn = "采购入库";
+    static final String OrderPoInNot = "采购入库-撤回";
+
     /** 未审核 */
     public static final String STATE_CREATE = "0";
     /** 已审核 */

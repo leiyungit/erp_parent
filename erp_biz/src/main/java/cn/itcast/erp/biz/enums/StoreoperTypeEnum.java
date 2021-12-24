@@ -1,22 +1,19 @@
 package cn.itcast.erp.biz.enums;
 
-public enum OrderDetailStateEnum {
+/**
+ * 仓库库存变更记录 操作类型
+ */
+public enum StoreoperTypeEnum {
 
-    // Integer state;//采购：0=未入库，1=已入库  销售：0=未出库，1=已出库
-    PO_NOT_IN(0,"未入库"),
-    PO_PART_IN(1,"部分入库"),
-    PO_IN(2,"已入库"),
-    SO_NOT_OUT(0,"未出库"),
-    SO_PART_OUT(1,"部分出库"),
-    SO_OUT(2,"已出库"),
+    IN(1,"入库"),
+    OUT(2,"出库"),
     ;
 
     private Integer code;
 
     private String message;
 
-
-    OrderDetailStateEnum(Integer code, String message) {
+    StoreoperTypeEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

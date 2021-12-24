@@ -139,7 +139,7 @@ CREATE TABLE orderdetail
    ENDER                BIGINT COMMENT '库管员',
    STOREUUID            BIGINT COMMENT '仓库编号',
    STORENUM             NUMERIC(10,2) COMMENT '入库/出库数量',
-   STATE                BIGINT(1) COMMENT '采购：0=未入库，1=部分入库，2=已入库  销售：0=未出库，1=部分出库，2=已出库',
+   STATE                INT(1) COMMENT '采购：0=未入库，1=部分入库，2=已入库  销售：0=未出库，1=部分出库，2=已出库',
    ORDERSUUID           BIGINT COMMENT '订单编号',
    PRIMARY KEY (UUID)
 );
@@ -156,14 +156,14 @@ CREATE TABLE orders
    CHECKTIME            DATETIME COMMENT '审核日期',
    STARTTIME            DATETIME COMMENT '确认日期',
    ENDTIME              DATETIME COMMENT '入库或出库日期',
-   TYPE                 BIGINT(1) COMMENT '1:采购 2:销售',
+   TYPE                 INT(1) COMMENT '1:采购 2:销售',
    CREATER              BIGINT COMMENT '下单员',
    CHECKER              BIGINT COMMENT '审核员',
    STARTER              BIGINT COMMENT '采购员',
    ENDER                BIGINT COMMENT '库管员',
    SUPPLIERUUID         BIGINT COMMENT '供应商或客户',
    TOTALMONEY           NUMERIC(10,2) COMMENT '合计金额',
-   STATE                BIGINT(2) COMMENT '采购: 0:未审核 1:已审核, 2:已确认, 3:已入库；销售：0:未出库 1:已出库',
+   STATE                INT(2) COMMENT '采购: 0:未审核 1:已审核, 2:已确认, 3:已入库；销售：0:未出库 1:已出库',
    WAYBILLSN            VARCHAR(50) COMMENT '运单号',
    PRIMARY KEY (UUID)
 );
@@ -253,14 +253,14 @@ CREATE TABLE store
 ALTER TABLE store COMMENT '仓库';
 
 /*==============================================================*/
-/* Table: STOREDETAIL                                           */
+/* Table: STOREDETAIL      添加初始库存，库存数需与库存关联                                     */
 /*==============================================================*/
 CREATE TABLE storedetail
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    STOREUUID            BIGINT COMMENT '仓库编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
-   NUM                  NUMERIC COMMENT '数量',
+   NUM                  NUMERIC(10,2) COMMENT '数量',
    PRIMARY KEY (UUID)
 );
 
@@ -276,8 +276,9 @@ CREATE TABLE storeoper
    OPERTIME             DATETIME COMMENT '操作日期',
    STOREUUID            BIGINT COMMENT '仓库编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
-   NUM                  NUMERIC COMMENT '数量',
-   TYPE                 CHAR(1) COMMENT '1：入库 2：出库',
+   NUM                  NUMERIC(10,2) COMMENT '数量',
+   TYPE                 INT(1) COMMENT '1：入库 2：出库',
+   OPERDESC             VARCHAR(32) COMMENT '操作描述',
    PRIMARY KEY (UUID)
 );
 

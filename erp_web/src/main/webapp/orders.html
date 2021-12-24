@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>采购订单查询</title>
-<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="css/table.css">
+    <meta charset="UTF-8">
+    <title>采购订单查询</title>
+    <link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
 
-<script type="text/javascript" src="ui/jquery.min.js"></script>
-<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+    <script type="text/javascript" src="ui/jquery.min.js"></script>
+    <script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
     <script type="text/javascript" src="ui/date.js"></script>
     <script type="text/javascript" src="ui/request.js"></script>
     <script type="text/javascript" src="js/ordersCodeToName.js"></script>
@@ -19,15 +19,15 @@
 </head>
 <body>
 <div class="easyui-panel" style="padding-left:4px;border-bottom:0px;">
-	<div style="height:2px;"></div>
-	<form id="searchForm">
-        流水号：<input name="t1.supplieruuid" >
-        供应商或客户：<input name="t1.supplieruuid" >
-        状态：<input name="t1.state" >
-        运单号：<input name="t1.waybillsn" >
+    <div style="height:2px;"></div>
+    <form id="searchForm">
+        流水号：<input name="t1.supplieruuid">
+        供应商或客户：<input name="t1.supplieruuid">
+        状态：<input name="t1.state">
+        运单号：<input name="t1.waybillsn">
         <button type="button" id="btnSearch">查询</button>
-	</form>
-	<div style="height:2px;"></div>
+    </form>
+    <div style="height:2px;"></div>
 </div>
 <table id="grid"></table>
 <!-- 订单详情窗口 -->
@@ -66,6 +66,33 @@
     </table>
     <table id="itemgrid"></table>
 </div>
-
+<!-- 入库窗口 -->
+<div id="itemDlg">
+    <form id="itemForm" style="padding:4px;">
+        <input type="hidden" name="id" id="itemuuid">
+        <table class="hovertable">
+            <tr>
+                <td width="30%" class="bg">商品编号</td>
+                <td width="70%" id="goodsuuid"></td>
+            </tr>
+            <tr>
+                <td class="bg">商品名称</td>
+                <td id="goodsname"></td>
+            </tr>
+            <tr>
+                <td class="bg">入库数量</td>
+                <td >
+                    <input id="goodsnum" name="storenum">
+                </td>
+            </tr>
+            <tr>
+                <td class="bg">仓库</td>
+                <td><input name="storeuuid" class="easyui-combobox" data-options="
+					url:'store_list',valueField:'uuid',textField:'name'
+				"></td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>

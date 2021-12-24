@@ -70,3 +70,19 @@ Eclipse XML Editors and Tools
 ————————————————
 版权声明：本文为CSDN博主「shuozhuo」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/mijichui2153/article/details/81185715
+
+
+
+## 系统模块说明
+
+### 采购管理
+
+#### 业务流程
+
+![image.png](https://upload-images.jianshu.io/upload_images/22934254-c3b9bb57882d4d15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### 采购入库
+
+* 可以分批入库，每次入库手动输入入库数量
+
+  ![image.png](https://upload-images.jianshu.io/upload_images/22934254-ee1c0e846193fbab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

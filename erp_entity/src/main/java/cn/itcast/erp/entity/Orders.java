@@ -149,6 +149,7 @@ public class Orders {
     public void setOrderDetails(List<Orderdetail> orderDetails) {
         this.orderDetails = orderDetails;
     }
+
     @Override
     public String toString() {
         return "Orders{" +
@@ -157,14 +158,19 @@ public class Orders {
                 ", checktime=" + checktime +
                 ", starttime=" + starttime +
                 ", endtime=" + endtime +
-                ", type='" + type + '\'' +
+                ", type=" + type +
                 ", creater=" + creater +
+                ", createrName='" + createrName + '\'' +
                 ", checker=" + checker +
+                ", checkerName='" + checkerName + '\'' +
                 ", starter=" + starter +
+                ", starterName='" + starterName + '\'' +
                 ", ender=" + ender +
+                ", enderName='" + enderName + '\'' +
                 ", supplieruuid=" + supplieruuid +
+                ", supplierName='" + supplierName + '\'' +
                 ", totalmoney=" + totalmoney +
-                ", state='" + state + '\'' +
+                ", state=" + state +
                 ", waybillsn='" + waybillsn + '\'' +
                 '}';
     }

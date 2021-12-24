@@ -13,6 +13,6 @@
         <property name="goodsuuid" /> 
         <property name="num" /> 
         <property name="type" /> 
- 
+        <property name="operdesc" />
     </class>
 </hibernate-mapping>

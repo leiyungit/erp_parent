@@ -16,12 +16,19 @@ public class Orderdetail {
     private java.util.Date endtime;//结束日期
     private Long ender;//库管员
     private Long storeuuid;//仓库编号
-    private Integer state;//采购：0=未入库，1=已入库  销售：0=未出库，1=已出库
+    private Double storenum; // 入库/出库数量
+    private Integer state;//采购：0=未入库，1=部分入库，2=已入库  销售：0=未出库，1=部分出库，2=已出库
     // private Long ordersuuid;//订单编号
     @JSONField(serialize = false) // fastJson在转换成字符串时反复的循环调用其属性造成的死循环
     private Orders orders; // 订单主表
     // 加两个字段，已入库数量，最后入库时间
 
+    public Double getStorenum() {
+        return storenum;
+    }
+    public void setStorenum(Double storenum) {
+        this.storenum = storenum;
+    }
     public Long getUuid() {
         return uuid;
     }
@@ -94,6 +101,7 @@ public class Orderdetail {
     public void setOrders(Orders orders) {
         this.orders = orders;
     }
+
     @Override
     public String toString() {
         return "Orderdetail{" +
@@ -106,7 +114,8 @@ public class Orderdetail {
                 ", endtime=" + endtime +
                 ", ender=" + ender +
                 ", storeuuid=" + storeuuid +
-                ", state='" + state + '\'' +
+                ", storenum=" + storenum +
+                ", state=" + state +
                 '}';
     }
 }

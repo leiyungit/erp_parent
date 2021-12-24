@@ -14,8 +14,9 @@
         <property name="money" /> 
         <property name="endtime" /> 
         <property name="ender" /> 
-        <property name="storeuuid" /> 
-        <property name="state" /> 
+        <property name="storeuuid" />
+        <property name="storenum" />
+        <property name="state" />
         <!--<property name="ordersuuid" /> -->
         <many-to-one name="orders" column="ordersuuid" class="cn.itcast.erp.entity.Orders"></many-to-one>
     </class>

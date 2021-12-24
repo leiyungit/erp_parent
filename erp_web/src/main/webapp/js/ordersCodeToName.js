@@ -25,7 +25,8 @@ function getOrdersState(value){
 function getOrderDetailState(value){
     switch (value*1){
         case 0:return '未入库';
-        case 1:return '已入库';
+        case 1:return '入库中';
+        case 2:return '已入库';
         default: return value;
     }
 }

@@ -53,7 +53,8 @@ $(function (){
             {field:'price',title:'价格',width:100},
             {field:'num',title:'数量',width:100},
             {field:'money',title:'金额',width:100},
-            {field:'state',title:'状态',width:100,formatter:getOrderDetailState}
+            {field:'state',title:'状态',width:100,formatter:getOrderDetailState},
+            {field:'storenum',title: '已入库数量',width: 100}
         ]],
         fitColumns: true,  // 在DataGrid控件底部显示分页工具栏
         singleSelect: true // 只允许选择一行
@@ -78,6 +79,36 @@ $(function (){
             }]
         });
     }
+    // 入库，双击打开入库窗口
+    if(Request['oper'] == 'doInStore'){
+        $('#itemgrid').datagrid({
+            onDblClickRow:function(rowIndex, rowData){
+                //显示数据
+                $('#itemuuid').val(rowData.uuid);
+                $('#goodsuuid').html(rowData.goodsuuid);
+                $('#goodsname').html(rowData.goodsname);
+                var num = parseFloat((rowData.num-(rowData.storenum==null?0:rowData.storenum)).toFixed(2));
+                $('#goodsnum').val(num);
+                //打开入库窗口
+                $('#itemDlg').dialog('open');
+            }
+        });
+    }
+    //入库窗口
+    $('#itemDlg').dialog({
+        width:300,
+        height:200,
+        title:'入库',
+        modal:true,
+        closed:true,
+        buttons:[
+            {
+                text:'入库',
+                iconCls:'icon-save',
+                handler:doInStore
+            }
+        ]
+    });
 })
 
 /**
@@ -128,6 +159,39 @@ function doStart(){
         }
     });
 }
+/**
+ * 入库
+ */
+function doInStore(){
+    var formdata = $('#itemForm').serializeJSON();
+    if(formdata.storeuuid == ''){
+        $.messager.alert('提示','请选择仓库!','info');
+        return;
+    }
+    console.log(formdata);
+    $.messager.confirm('确认', '确定要入库吗？', function(yes){
+        if (yes){
+            $.ajax({
+                url:'orderdetail_doInStore',
+                data: formdata,
+                dataType:"json",
+                type: 'post',
+                success: function (rtn){
+                    if(rtn.success){
+                        //关闭窗口
+                        $('#itemDlg').dialog('close');
+                        $('#ordersDlg').dialog('close');
+                        //刷新表格
+                        $('#grid').datagrid('reload');
+                    }else{
+                        $.messager.alert('提示',rtn.message,'info')
+                    }
+                }
+            });
+        }
+    });
+}
+
 var columns = [[
     {field:'uuid',title:'流水号',width:100},
     {field:'createtime',title:'生成日期',width:100,formatter:formatDate},

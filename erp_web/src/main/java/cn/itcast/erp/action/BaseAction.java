@@ -75,7 +75,6 @@ public class BaseAction<T> {
     }
 
     public void list() {
-        System.out.println("===========list");
         List<T> list = baseBiz.getList(t1, t2, param);
         String stringList = JSON.toJSONString(list, SerializerFeature.DisableCircularReferenceDetect);
         ResultUtil.write(stringList);
@@ -147,7 +146,7 @@ public class BaseAction<T> {
     }
 
     public void update() {
-        System.out.println(t);
+        //System.out.println(t);
         try {
             baseBiz.update(t);
             ResultUtil.ajaxReturn(true, "修改成功");

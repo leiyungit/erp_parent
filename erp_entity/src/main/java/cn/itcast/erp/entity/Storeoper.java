@@ -9,9 +9,16 @@ public class Storeoper {
     private java.util.Date opertime;//操作日期
     private Long storeuuid;//仓库编号
     private Long goodsuuid;//商品编号
-    private Long num;//数量
-    private String type;//1：入库 2：出库
+    private Double num;//数量
+    private Integer type;//1：入库 2：出库
+    private String operdesc;  // 操作描述
 
+    public String getOperdesc() {
+        return operdesc;
+    }
+    public void setOperdesc(String operdesc) {
+        this.operdesc = operdesc;
+    }
     public Long getUuid() {
         return uuid;
     }
@@ -42,16 +49,16 @@ public class Storeoper {
     public void setGoodsuuid(Long goodsuuid) {
         this.goodsuuid = goodsuuid;
     }
-    public Long getNum() {
+    public Double getNum() {
         return num;
     }
-    public void setNum(Long num) {
+    public void setNum(Double num) {
         this.num = num;
     }
-    public String getType() {
+    public Integer getType() {
         return type;
     }
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
