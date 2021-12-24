@@ -1,6 +1,6 @@
 package cn.itcast.erp.entity;
 /**
- * 实体类
+ * 仓库
  * @author Administrator *
  */
 public class Store {	

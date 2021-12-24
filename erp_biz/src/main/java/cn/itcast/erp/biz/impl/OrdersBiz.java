@@ -74,8 +74,8 @@ public class OrdersBiz extends BaseBiz<Orders> implements IOrdersBiz {
     public void add(Orders orders){
         // 新增采购订单状态
         orders.setState(OrdersStateEnum.NEW.getCode());
-        // 采购
-        orders.setType(OrdersTypeEnum.PO.getCode());
+        // 采购/销售， 类型由前端传入
+        // orders.setType(OrdersTypeEnum.PO.getCode());
         // 订单创建时间
         orders.setCreatetime(new Date());
         // 采购总金额

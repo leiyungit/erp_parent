@@ -89,4 +89,18 @@ public class OrdersAction extends BaseAction<Orders> {
             e.printStackTrace();
         }
     }
+
+    public void myListByPage(){
+        if(null == getT1()){
+            //构建查询条件
+            setT1(new Orders());
+        }
+        Emp loginUser = getLoginUser();
+        if(null == loginUser){
+            ResultUtil.ajaxReturnFail("亲，您还没有登录！");
+        }
+        //登陆用户的编号查询
+        getT1().setCreater(loginUser.getUuid());
+        super.listByPage();
+    }
 }

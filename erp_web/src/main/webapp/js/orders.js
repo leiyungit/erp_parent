@@ -1,18 +1,54 @@
 
 
 $(function (){
-    var url = 'orders_listByPage?t1.type=1'; //  采购
+    var type = Request['type']*1
+    var url = 'orders_listByPage?t1.type=' +type; //  采购
+    var btnText = "";
+    var inoutTitle = "";
+    if(type == 1){
+        btnText = '采购申请';
+        document.title="我的采购订单";
+    }else if(type == 2){
+        btnText = '销售订单录入';
+        document.title="我的销售订单";
+    }
+    if(Request['oper'] == 'myorders'){
+        url = 'orders_myListByPage?t1.type=' + Request['type'];
+        // 添加表格头部按钮
+        $('#grid').datagrid({
+            toolbar: [{
+                text: btnText,
+                iconCls: 'icon-add',
+                handler: function (){
+                    $('#addOrdersDlg').dialog('open');
+                }
+            }]
+        })
+    }
+    // 采购订单查询
+    if(Request['oper'] == 'orders'){
+        document.title="采购订单查询";
+    }
     // 如果审核业务，加上state=0，只查询出未审核的订单
     if(Request['oper'] == 'doCheck'){
         url += "&t1.state=0";
+        document.title="采购订单审核";
     }
     // 如果确认业务，加上state=1，只查询出已审核的订单
     if(Request['oper'] == 'doStart'){
         url += "&t1.state=1";
+        document.title="采购订单确认";
     }
     // 如果入库业务，加上state=2，只查询出已确认过的订单
     if(Request['oper'] == 'doInStore'){
         url += "&t1.state=2";
+        document.title="采购订单入库";
+        inoutTitle = "入库";
+    }
+    if(Request['oper'] == 'doOutStore'){
+        url += "&t1.state=0";
+        document.title="销售订单出库";
+        inoutTitle = "出库";
     }
     $('#grid').datagrid({
         url: url,
@@ -94,21 +130,31 @@ $(function (){
             }
         });
     }
-    //入库窗口
+    // 入库窗口
     $('#itemDlg').dialog({
+        title:inoutTitle,
         width:300,
         height:200,
-        title:'入库',
         modal:true,
         closed:true,
         buttons:[
             {
-                text:'入库',
+                text:inoutTitle,
                 iconCls:'icon-save',
                 handler:doInStore
             }
         ]
     });
+    // 采购申请窗口
+    var _content="<iframe scrolling='auto' frameborder='0' src='../erp/orders_add.html?type="+type+"' style='width:100%; height:100%; display:block;'></iframe>";
+    $('#addOrdersDlg').dialog({
+        title:'添加订单',
+        width:700,
+        height:400,
+        modal:true,
+        closed:true,
+        content:_content
+    })
 })
 
 /**
