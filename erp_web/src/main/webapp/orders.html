@@ -22,8 +22,9 @@
 <div class="easyui-panel" style="padding-left:4px;border-bottom:0px;">
     <div style="height:2px;"></div>
     <form id="searchForm">
-        流水号：<input name="t1.supplieruuid">
-        供应商或客户：<input name="t1.supplieruuid">
+        编号：<input name="t1.supplieruuid">
+        <span class="labSupplier"></span>
+        <input name="t1.supplieruuid">
         状态：<input name="t1.state">
         运单号：<input name="t1.waybillsn">
         <button type="button" id="btnSearch">查询</button>
@@ -97,7 +98,11 @@
 </div>
 <!-- 增加订单的窗口 -->
 <div id="addOrdersDlg" style="padding:2px;">
-
+    <form id="orderForm">
+        <span id="addOrdersSupplier"></span>：<input id="supplier" name="t.supplieruuid" >
+        <div style="height:2px;"></div>
+    </form>
+    <table id="ordersgrid"></table>
 </div>
 </body>
 </html>

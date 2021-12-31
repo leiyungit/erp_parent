@@ -8,9 +8,11 @@ $(function (){
     if(type == 1){
         btnText = '采购申请';
         document.title="我的采购订单";
+        $('.labSupplier').html('供应商：');
     }else if(type == 2){
         btnText = '销售订单录入';
         document.title="我的销售订单";
+        $('.labSupplier').html('客户：');
     }
     if(Request['oper'] == 'myorders'){
         url = 'orders_myListByPage?t1.type=' + Request['type'];
@@ -54,7 +56,7 @@ $(function (){
         url: url,
         dataType:"json",
         type: 'post',
-        columns: columns,
+        columns: getColumns(),
         pagination: true, // 在DataGrid控件底部显示分页工具栏
         singleSelect: true, // 只允许选择一行
         rownumbers: true, // 显示一个行号列
@@ -146,14 +148,14 @@ $(function (){
         ]
     });
     // 采购申请窗口
-    var _content="<iframe scrolling='auto' frameborder='0' src='../erp/orders_add.html?type="+type+"' style='width:100%; height:100%; display:block;'></iframe>";
+    //var _content="<iframe scrolling='auto' frameborder='0' src='../erp/orders_add.html?type="+type+"' style='width:100%; height:100%; display:block;'></iframe>";
     $('#addOrdersDlg').dialog({
         title:'添加订单',
         width:700,
         height:400,
         modal:true,
         closed:true,
-        content:_content
+        //content:_content
     })
 })
 
@@ -238,8 +240,43 @@ function doInStore(){
     });
 }
 
+/**
+ * 根据订单类型，获取不同的列
+ */
+function getColumns(){
+    if(Request['type'] * 1 == 1){
+        return [[
+            {field:'uuid',title:'编号',width:100},
+            {field:'createtime',title:'生成日期',width:100,formatter:formatDate},
+            {field:'checktime',title:'审核日期',width:100,formatter:formatDate},
+            {field:'starttime',title:'确认日期',width:100,formatter:formatDate},
+            {field:'endtime',title:'入库日期',width:100,formatter:formatDate},
+            {field:'createrName',title:'下单员',width:100},
+            {field:'checkerName',title:'审核员',width:100},
+            {field:'starterName',title:'采购员',width:100},
+            {field:'enderName',title:'库管员',width:100},
+            {field:'supplierName',title:'供应商',width:100},
+            {field:'totalmoney',title:'合计金额',width:100},
+            {field:'state',title:'状态',width:100,formatter:getOrdersState},
+            {field:'waybillsn',title:'运单号',width:100}
+        ]];
+    }
+    if(Request['type'] * 1 == 2){
+        return [[
+            {field:'uuid',title:'编号',width:100},
+            {field:'createtime',title:'生成日期',width:100,formatter:formatDate},
+            {field:'endtime',title:'出库日期',width:100,formatter:formatDate},
+            {field:'createrName',title:'下单员',width:100},
+            {field:'enderName',title:'库管员',width:100},
+            {field:'supplierName',title:'客户',width:100},
+            {field:'totalmoney',title:'合计金额',width:100},
+            {field:'state',title:'状态',width:100,formatter:getOrdersState},
+            {field:'waybillsn',title:'运单号',width:100}
+        ]];
+    }
+}
 var columns = [[
-    {field:'uuid',title:'流水号',width:100},
+    {field:'uuid',title:'编号',width:100},
     {field:'createtime',title:'生成日期',width:100,formatter:formatDate},
     {field:'checktime',title:'审核日期',width:100,formatter:formatDate},
     {field:'starttime',title:'确认日期',width:100,formatter:formatDate},

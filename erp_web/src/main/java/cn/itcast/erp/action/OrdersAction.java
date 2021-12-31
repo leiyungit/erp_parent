@@ -42,7 +42,7 @@ public class OrdersAction extends BaseAction<Orders> {
         try {
             Orders orders = this.getT();
             // 设置订单创建人
-            orders.setChecker(loginUser.getUuid());
+            orders.setCreater(loginUser.getUuid());
             // orders.setSupplieruuid(t1.getSupplieruuid());
             System.out.println(orders);
             List<Orderdetail> orderDetails = JSON.parseArray(json, Orderdetail.class);
