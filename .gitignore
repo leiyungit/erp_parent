@@ -47,3 +47,4 @@ build/
 
 .project
 .settings
+.attach_*

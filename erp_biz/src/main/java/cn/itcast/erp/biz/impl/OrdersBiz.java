@@ -41,6 +41,7 @@ public class OrdersBiz extends BaseBiz<Orders> implements IOrdersBiz {
 
     @Override
     public List<Orders> listByPage(Orders t1, Orders t2, Object param, int firstResult, int maxResults) {
+        System.out.println("分页查询订单主表");
         List<Orders> orders = this.ordersDao.listByPage(t1, t2, param, firstResult, maxResults);
         // 缓存员工名称
         Map<Long,String> empMap = new HashMap<>();
@@ -118,6 +119,7 @@ public class OrdersBiz extends BaseBiz<Orders> implements IOrdersBiz {
         }
         if(!empMap.containsKey(empUuid)){
             String name = this.empDao.get(empUuid).getName();
+            System.out.println("================="+name);
             empMap.put(empUuid, name);
             return name;
         }

@@ -91,6 +91,7 @@ public class OrdersAction extends BaseAction<Orders> {
     }
 
     public void myListByPage(){
+        System.out.println("myListByPage");
         if(null == getT1()){
             //构建查询条件
             setT1(new Orders());
@@ -98,9 +99,12 @@ public class OrdersAction extends BaseAction<Orders> {
         Emp loginUser = getLoginUser();
         if(null == loginUser){
             ResultUtil.ajaxReturnFail("亲，您还没有登录！");
+            return;
         }
         //登陆用户的编号查询
         getT1().setCreater(loginUser.getUuid());
+        System.out.println(getT1());
+        // ordersBiz.listByPage(getT1(),getT2(),super.getParam(),(page - 1) * rows, rows)
         super.listByPage();
     }
 }

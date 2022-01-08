@@ -36,7 +36,7 @@
 				<!-- oracle 数据库 配置 -->
 				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop> -->
 				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
 			</props>
 		</property>
 		<property name="mappingLocations">
