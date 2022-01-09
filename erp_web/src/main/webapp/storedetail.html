@@ -11,16 +11,16 @@
     <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
     <script type="text/javascript" src="js/crud.js"></script>
     <script type="text/javascript">
-        var name = "storedetail";
-        var columns = [[
+        name = "storedetail";
+        toolbarText = '';
+        columns = [[
             {field: 'uuid', title: '编号', width: 100},
-            {field: 'storeuuid', title: '仓库编号', width: 100},
-            {field: 'goodsuuid', title: '商品编号', width: 100},
+            {field: 'storeName', title: '仓库', width: 100},
+            {field: 'goodsName', title: '商品', width: 100},
             {field: 'num', title: '数量', width: 100},
-
             {
                 field: '-', title: '操作', width: 200, formatter: function (value, row, index) {
-                    var oper = "<a href=\"javascript:void(0)\" onclick=\"edit(" + row.uuid + ')">明细</a>';
+                    var oper = "<a href=\"javascript:void(0)\" >明细</a>";
                     return oper;
                 }
             }
@@ -32,8 +32,13 @@
 <div class="easyui-panel" style="padding-left:4px;border-bottom:0px;">
     <div style="height:2px;"></div>
     <form id="searchForm">
-        仓库编号：<input name="t1.storeuuid">
-        商品编号：<input name="t1.goodsuuid">
+        仓库：
+            <input name="t1.storeuuid" class="easyui-combobox" data-options="
+					url:'store_list',valueField:'uuid',textField:'name'
+				">
+        商品：<input name="t1.goodsuuid" class="easyui-combobox" data-options="
+					url:'goods_list',valueField:'uuid',textField:'name'
+				">
         <button type="button" id="btnSearch">查询</button>
     </form>
     <div style="height:2px;"></div>
