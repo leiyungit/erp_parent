@@ -118,8 +118,9 @@ public class OrdersBiz extends BaseBiz<Orders> implements IOrdersBiz {
             return null;
         }
         if(!empMap.containsKey(empUuid)){
+            //System.out.print("=================key不存在，查询数据库"+empUuid);
             String name = this.empDao.get(empUuid).getName();
-            System.out.println("================="+name);
+            //System.out.println(", name:"+name);
             empMap.put(empUuid, name);
             return name;
         }

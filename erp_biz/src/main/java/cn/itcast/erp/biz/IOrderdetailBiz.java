@@ -26,5 +26,15 @@ public interface IOrderdetailBiz extends IBaseBiz<Orderdetail>{
      * @return 是否成功
      */
     boolean doNotInStore(Long uuid,Long storeUuid,Double storeNum,Long empUuid);
+
+    /**
+     * 销售出库
+     * @param uuid 销售明细单号
+     * @param storeUuid 仓库编号
+     * @param storeNum 出库数量
+     * @param empUuid 库管员
+     * @return
+     */
+    boolean doOutStore(Long uuid,Long storeUuid,Double storeNum,Long empUuid);
 }
 

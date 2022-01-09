@@ -64,10 +64,10 @@ $(function (){
         onDblClickRow: function(rowIndex,rowData){
             // rowIndex：点击的行的索引值，该索引值从0开始
             // rowData：对应于点击行的记录。
-            console.log(rowData)
+            // console.log(rowData)
             $('#ordersDlg').dialog('open')
-            for (let key in rowData) {
-                console.log(key + ":" + rowData[key])
+            for (var key in rowData) {
+                // console.log(key + ":" + rowData[key])
                 if(key == 'state'){
                     $('#'+key).html(getOrdersState(rowData[key]));
                 }else if(key.indexOf('time')>0){
@@ -76,7 +76,7 @@ $(function (){
                     $('#'+key).html(rowData[key]);
                 }
             }
-            console.log(rowData.orderDetails);
+            // console.log(rowData.orderDetails);
             // 加载明细
             $('#itemgrid').datagrid('loadData',rowData.orderDetails);
         }
@@ -84,6 +84,7 @@ $(function (){
 
     // 明细表格
     $('#itemgrid').datagrid({
+
         columns: [[
             {field:'uuid',title:'编号',width:100},
             {field:'goodsuuid',title:'商品编号',width:100},
@@ -92,7 +93,7 @@ $(function (){
             {field:'num',title:'数量',width:100},
             {field:'money',title:'金额',width:100},
             {field:'state',title:'状态',width:100,formatter:getOrderDetailState},
-            {field:'storenum',title: '已入库数量',width: 100}
+            {field:'storenum',title: '已'+inoutTitle+'数量',width: 100}
         ]],
         fitColumns: true,  // 在DataGrid控件底部显示分页工具栏
         singleSelect: true // 只允许选择一行
@@ -117,10 +118,19 @@ $(function (){
             }]
         });
     }
-    // 入库，双击打开入库窗口
-    if(Request['oper'] == 'doInStore'){
+    //  列表双击事件（模态窗口中），入库/出库
+    if(Request['oper'] == 'doInStore' || Request['oper'] == 'doOutStore'){
         $('#itemgrid').datagrid({
             onDblClickRow:function(rowIndex, rowData){
+                // todo: 如果采购订单是全部已入库，销售订单是全部已出库，则不加载模态窗口
+                if(Request['type']*1 == 1 && rowData.state*1 == 2){
+                    console.log('采购明细已全部入库，无须操作入库')
+                    return;
+                }
+                if(Request['type']*1 == 2 && rowData.state*1 == 2){
+                    console.log('销售明细已全部出库，无须操作出库')
+                    return;
+                }
                 //显示数据
                 $('#itemuuid').val(rowData.uuid);
                 $('#goodsuuid').html(rowData.goodsuuid);
@@ -129,10 +139,11 @@ $(function (){
                 $('#goodsnum').val(num);
                 //打开入库窗口
                 $('#itemDlg').dialog('open');
+
             }
         });
     }
-    // 入库窗口
+    // 入库/出库窗口
     $('#itemDlg').dialog({
         title:inoutTitle,
         width:300,
@@ -143,7 +154,7 @@ $(function (){
             {
                 text:inoutTitle,
                 iconCls:'icon-save',
-                handler:doInStore
+                handler:doInOutStore
             }
         ]
     });
@@ -208,19 +219,29 @@ function doStart(){
     });
 }
 /**
- * 入库
+ * 出入库
  */
-function doInStore(){
+function doInOutStore(){
+    var message = '';
+    var url = '';
+    if(Request['type']*1 == 1){
+        message = '确定要入库吗?';
+        url = 'orderdetail_doInStore';
+    }
+    if(Request['type']*1 == 2){
+        message = '确定要出库吗?';
+        url = 'orderdetail_doOutStore'
+    }
     var formdata = $('#itemForm').serializeJSON();
     if(formdata.storeuuid == ''){
         $.messager.alert('提示','请选择仓库!','info');
         return;
     }
     console.log(formdata);
-    $.messager.confirm('确认', '确定要入库吗？', function(yes){
+    $.messager.confirm('确认', message, function(yes){
         if (yes){
             $.ajax({
-                url:'orderdetail_doInStore',
+                url: url,
                 data: formdata,
                 dataType:"json",
                 type: 'post',

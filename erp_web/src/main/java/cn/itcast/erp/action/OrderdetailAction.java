@@ -68,4 +68,25 @@ public class OrderdetailAction extends BaseAction<Orderdetail> {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 销售出库
+     */
+    public void doOutStore(){
+        Emp loginUser = getLoginUser();
+        if(null == loginUser){
+            ResultUtil.ajaxReturnFail("亲，您还没有登录！");
+            return;
+        }
+        try {
+            System.out.println("storeuuid: "+storeuuid +", storenum:"+storenum);
+            orderdetailBiz.doOutStore(getId(), storeuuid,storenum,loginUser.getUuid());
+            ResultUtil.ajaxReturnSuccess("出库成功");
+        }catch (ErpException e) {
+            ResultUtil.ajaxReturnFail(e.getMessage());
+        } catch (Exception e) {
+            ResultUtil.ajaxReturnFail("出库失败");
+            e.printStackTrace();
+        }
+    }
 }

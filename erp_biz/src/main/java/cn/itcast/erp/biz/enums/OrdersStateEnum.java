@@ -10,6 +10,8 @@ public enum OrdersStateEnum {
     START(2,"已确认"),
     END(3,"已入库"),
     CANCLE(99,"已取消"),
+    NOT_OUT(0,"未出库"),
+    OUT(1,"已出库"),
     ;
 
     private Integer code;

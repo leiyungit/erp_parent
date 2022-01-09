@@ -54,7 +54,7 @@ public class BaseBiz<T> implements IBaseBiz<T> {
      */
     @Override
     public List<T> listByPage(T t1, T t2, Object param, int firstResult, int maxResults) {
-        System.out.println("biz，baseBiz listByPage");
+        // System.out.println("biz，baseBiz listByPage");
         return  this.baseDao.listByPage(t1,t2,param,firstResult,maxResults);
     }
 
