@@ -12,7 +12,6 @@
     <script type="text/javascript" src="js/crud.js"></script>
     <script type="text/javascript">
         name = "storedetail";
-        toolbarText = '';
         columns = [[
             {field: 'uuid', title: '编号', width: 100},
             {field: 'storeName', title: '仓库', width: 100},
@@ -20,7 +19,8 @@
             {field: 'num', title: '数量', width: 100},
             {
                 field: '-', title: '操作', width: 200, formatter: function (value, row, index) {
-                    var oper = "<a href=\"javascript:void(0)\" >明细</a>";
+                    //todo: 点击明细 打开库存变动记录
+                    var oper = "<a href=\"javascript:void(0)\" onclick=\"edit(" + row.uuid + ')">明细</a>';
                     return oper;
                 }
             }

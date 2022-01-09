@@ -49,7 +49,7 @@ public class StoredetailBiz extends BaseBiz<Storedetail> implements IStoredetail
 	@Override
 	public List<Storedetail> listByPage(Storedetail t1, Storedetail t2, Object param, int firstResult, int maxResults) {
 
-		List<Storedetail> list = this.storedetailDao.listByPage(t1, t2, param, firstResult, maxResults);
+		List<Storedetail> list = super.listByPage(t1, t2, param, firstResult, maxResults);
 
 		Map<Long,String> storeMap = new HashMap<>();
 		Map<Long,String> goodsMap = new HashMap<>();
