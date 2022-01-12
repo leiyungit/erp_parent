@@ -6,6 +6,8 @@ var width = 300;
 var height = 200;
 var listParam = ""; // 供应商 或 客户 类型，列表参数
 var saveParam = "";  // 供应商 或 客户 类型，保存参数
+var addBtnText = '新增';
+var addIcon = 'icon-add';
 $(function () {
     //$.messager.alert("提示","欢迎来到....");
     $('#grid').datagrid({
@@ -15,8 +17,8 @@ $(function () {
         singleSelect: true, // 只允许选择一行
         rownumbers: rownumbers, // 显示一个行号列
         toolbar: [{
-            text: '新增',
-            iconCls: 'icon-add',
+            text: addBtnText,
+            iconCls: addIcon,
             handler: function () {
                 method = 'add';
                 $('#editForm').form('clear');

@@ -39,3 +39,10 @@ function formatDate(value){
     }
     return new Date(value).Format("yyyy-MM-dd")
 }
+
+function formatDateTime(value){
+    if(typeof(value) == 'undefined'){
+        return "";
+    }
+    return new Date(value).Format("yyyy-MM-dd hh:mm:ss")
+}

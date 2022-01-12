@@ -84,7 +84,7 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
     @Override
     public void add(T t) {
-        System.out.println(t);
+        // System.out.println(t);
         // this.getHibernateTemplate().setCheckWriteOperations(false);
         this.getHibernateTemplate().save(t);
     }

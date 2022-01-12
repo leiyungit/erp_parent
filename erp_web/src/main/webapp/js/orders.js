@@ -7,10 +7,12 @@ $(function (){
     var inoutTitle = "";
     if(type == 1){
         btnText = '采购申请';
+        inoutTitle = "入库";
         document.title="我的采购订单";
         $('.labSupplier').html('供应商：');
     }else if(type == 2){
         btnText = '销售订单录入';
+        inoutTitle = "出库";
         document.title="我的销售订单";
         $('.labSupplier').html('客户：');
     }
@@ -45,12 +47,12 @@ $(function (){
     if(Request['oper'] == 'doInStore'){
         url += "&t1.state=2";
         document.title="采购订单入库";
-        inoutTitle = "入库";
+
     }
     if(Request['oper'] == 'doOutStore'){
         url += "&t1.state=0";
         document.title="销售订单出库";
-        inoutTitle = "出库";
+
     }
     $('#grid').datagrid({
         url: url,

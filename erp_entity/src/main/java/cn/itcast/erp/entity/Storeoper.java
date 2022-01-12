@@ -12,6 +12,33 @@ public class Storeoper {
     private Double num;//数量
     private Integer type;//1：入库 2：出库
     private String operdesc;  // 操作描述
+    private String empName;  //操作员名称
+    private String storeName;//仓库名称
+    private String goodsName;//商品名称
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
 
     public String getOperdesc() {
         return operdesc;

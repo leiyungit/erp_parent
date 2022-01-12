@@ -76,6 +76,9 @@
     <!-- 仓库操作记录 -->
     <bean id="storeoperBiz" class="cn.itcast.erp.biz.impl.StoreoperBiz">
         <property name="storeoperDao" ref="storeoperDao"></property>
+        <property name="empBiz" ref="empBiz"></property>
+        <property name="storeBiz" ref="storeBiz"></property>
+        <property name="goodsBiz" ref="goodsBiz"></property>
     </bean>
     <!-- 供应商 -->
     <bean id="supplierBiz" class="cn.itcast.erp.biz.impl.SupplierBiz">
