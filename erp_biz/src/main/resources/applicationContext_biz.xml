@@ -88,5 +88,9 @@
     <bean id="userBiz" class="cn.itcast.erp.biz.impl.UserBiz">
         <property name="userDao" ref="userDao"></property>
     </bean>
+    <!-- 报表 -->
+    <bean id="reportBiz" class="cn.itcast.erp.biz.impl.ReportBiz">
+        <property name="reportDao" ref="reportDao"></property>
+    </bean>
 </beans>
 	

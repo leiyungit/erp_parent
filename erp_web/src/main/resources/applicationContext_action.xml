@@ -82,5 +82,9 @@
         <property name="userBiz" ref="userBiz"></property>
         <property name="empBiz" ref="empBiz"></property>
     </bean>
+    <!-- 供应商 -->
+    <bean id="reportAction" class="cn.itcast.erp.action.ReportAction" scope="prototype">
+        <property name="reportBiz" ref="reportBiz"></property>
+    </bean>
 </beans>
 	
