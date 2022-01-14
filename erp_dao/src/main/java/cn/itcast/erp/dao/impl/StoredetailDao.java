@@ -1,9 +1,13 @@
 package cn.itcast.erp.dao.impl;
+import cn.itcast.erp.entity.Storealert;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import cn.itcast.erp.dao.IStoredetailDao;
 import cn.itcast.erp.entity.Storedetail;
+
+import java.util.List;
+
 /**
  * 数据访问类
  * @author Administrator
@@ -33,7 +37,16 @@ public class StoredetailDao extends BaseDao<Storedetail> implements IStoredetail
 		}		
 		return dc;
 	}
-	
-	
+
+
+    /**
+     * 获取库存预警列表
+     *
+     * @return
+     */
+    @Override
+    public List<Storealert> getStorealertList() {
+        return (List<Storealert>) getHibernateTemplate().find("from Storealert where storenum<outnum-innum");
+    }
 }
 
