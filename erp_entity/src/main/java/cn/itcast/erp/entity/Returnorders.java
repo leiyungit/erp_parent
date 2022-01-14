@@ -1,10 +1,14 @@
 package cn.itcast.erp.entity;
+
+import java.util.Date;
+
 /**
  * 实体类
  * @author Administrator *
  */
 public class Returnorders {	
 	private Long uuid;//编号
+    private java.util.Date notedate; // 单据日期
 	private java.util.Date createtime;//生成日期
 	private java.util.Date checktime;//检查日期
 	private java.util.Date endtime;//结束日期
@@ -30,6 +34,12 @@ public class Returnorders {
 	public void setCreatetime(java.util.Date createtime) {
 		this.createtime = createtime;
 	}
+    public Date getNotedate() {
+        return notedate;
+    }
+    public void setNotedate(Date notedate) {
+        this.notedate = notedate;
+    }
 	public java.util.Date getChecktime() {		
 		return checktime;
 	}

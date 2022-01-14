@@ -6,6 +6,7 @@
         <id name="uuid" >
         	<generator class="native"></generator>
         </id>
+        <property name="notedate" />
         <property name="createtime" /> 
         <property name="checktime" /> 
         <property name="starttime" /> 

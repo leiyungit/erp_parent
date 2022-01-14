@@ -44,7 +44,8 @@ public class OrdersAction extends BaseAction<Orders> {
             // 设置订单创建人
             orders.setCreater(loginUser.getUuid());
             // orders.setSupplieruuid(t1.getSupplieruuid());
-            System.out.println(orders);
+            //System.out.println("新增订单数据：");
+            //System.out.println(orders);
             List<Orderdetail> orderDetails = JSON.parseArray(json, Orderdetail.class);
             orders.setOrderDetails(orderDetails);
             // System.out.println(orders);

@@ -103,7 +103,9 @@ public class OrdersBiz extends BaseBiz<Orders> implements IOrdersBiz {
         }
         // 设置总金额
         orders.setTotalmoney(total);
-        System.out.println(orders.getOrderDetails());
+        System.out.print("业务层，新增订单：");
+        System.out.println(orders);
+        // System.out.println(orders.getOrderDetails());
         this.ordersDao.add(orders);
     }
 

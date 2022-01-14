@@ -26,7 +26,23 @@
 
 >html+ajax
 >
->
+>报表图表：HighCharts
+
+#### HighCharts
+
+* 中文在线文档：https://api.highcharts.com.cn/legacy/index.html
+
+  使用步骤：
+
+  >1、添加 highcharts.js 到ui文件夹
+  >
+  >​		引入exporting.js 导出的插件
+  >
+  >2、Pie charts
+  >
+  >​      Pie with legend 查看源码，复制到使用html和js
+  >
+  >
 
 ### 后端：SSH2
 

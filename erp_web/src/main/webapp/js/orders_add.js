@@ -5,6 +5,7 @@ $(function (){
     }else if(Request['type']*1 == 2){
         $('#addOrdersSupplier').html('客户')
     }
+
     $('#ordersgrid').datagrid({
         columns: [[
             {field:'goodsuuid',title:'商品编号',width:100,editor:{type:'numberbox',options:{disabled:true}}}, // 禁止编辑
@@ -74,6 +75,12 @@ $(function (){
                     // 没有选择供应商，退出
                     if(!formData['t.supplieruuid'] || formData['t.supplieruuid'] == '请选择'){
                         $.messager.alert('提示','请先选择'+$('#addOrdersSupplier').html(),'info');
+                        return ;
+                    }
+                    console.log(formData);
+                    if(!formData['t.notedate']){
+                        // $.messager.alert('提示','请输入单据日期','info');
+                        alertInfo('请输入单据日期');
                         return ;
                     }
                     // 获取所有的明细

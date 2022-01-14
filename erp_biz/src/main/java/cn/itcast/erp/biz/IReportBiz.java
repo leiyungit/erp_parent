@@ -2,6 +2,7 @@ package cn.itcast.erp.biz;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface IReportBiz {
     /**
@@ -10,5 +11,12 @@ public interface IReportBiz {
      * @param endDate
      * @return
      */
-    List ordersReport(Date startDate, Date endDate);
+    List soOrdersReport(Date startDate, Date endDate);
+
+    /**
+     * 销售趋势图
+     * @param year 年
+     * @return
+     */
+    List<Map<String,Object>> soTrendReport(int year);
 }

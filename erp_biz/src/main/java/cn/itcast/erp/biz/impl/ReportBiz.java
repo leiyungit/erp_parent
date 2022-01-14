@@ -1,11 +1,9 @@
 package cn.itcast.erp.biz.impl;
 
 import cn.itcast.erp.biz.IReportBiz;
-import cn.itcast.erp.dao.IDepDao;
 import cn.itcast.erp.dao.IReportDao;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class ReportBiz implements IReportBiz {
 
@@ -24,7 +22,36 @@ public class ReportBiz implements IReportBiz {
      * @return
      */
     @Override
-    public List ordersReport(Date startDate, Date endDate) {
-        return this.reportDao.ordersReport(startDate,endDate);
+    public List soOrdersReport(Date startDate, Date endDate) {
+        return this.reportDao.soOrdersReport(startDate,endDate);
+    }
+
+    /**
+     * 销售趋势图
+     *
+     * @param year 年
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> soTrendReport(int year) {
+        List<Map<String, Object>> source = this.reportDao.soTrendReport(year);
+        List<Map<String, Object>> result = new ArrayList<>();
+        Map<String,Map<String, Object>> yearDataMap = new HashMap<>();
+        for (Map<String, Object> monthMoney : source) {
+            yearDataMap.put(String.valueOf(monthMoney.get("name")),monthMoney);
+        }
+        Map<String, Object> monthMoney = null;
+        for (int i = 1; i < 13; i++) {
+            monthMoney = yearDataMap.get(String.valueOf(i));
+            if(null == monthMoney){
+                monthMoney = new HashMap<>();
+                monthMoney.put("name", i+"月");
+                monthMoney.put("y", 0);
+            }else{
+                monthMoney.put("name", monthMoney.get("name")+"月");
+            }
+            result.add(monthMoney);
+        }
+        return result;
     }
 }

@@ -1,5 +1,6 @@
 package cn.itcast.erp.entity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,7 +9,8 @@ import java.util.List;
  */
 public class Orders {	
 	private Long uuid;//编号
-	private java.util.Date createtime;//生成日期
+    private java.util.Date notedate; // 单据日期
+    private java.util.Date createtime;//生成日期
 	private java.util.Date checktime;//审核日期
 	private java.util.Date starttime;//确认日期
 	private java.util.Date endtime;//入库或出库日期
@@ -65,7 +67,13 @@ public class Orders {
 	public void setUuid(Long uuid) {
 		this.uuid = uuid;
 	}
-	public java.util.Date getCreatetime() {		
+    public Date getNotedate() {
+        return notedate;
+    }
+    public void setNotedate(Date notedate) {
+        this.notedate = notedate;
+    }
+    public java.util.Date getCreatetime() {
 		return createtime;
 	}
 	public void setCreatetime(java.util.Date createtime) {
@@ -154,6 +162,7 @@ public class Orders {
     public String toString() {
         return "Orders{" +
                 "uuid=" + uuid +
+                ", notedate=" + notedate +
                 ", createtime=" + createtime +
                 ", checktime=" + checktime +
                 ", starttime=" + starttime +
@@ -172,6 +181,7 @@ public class Orders {
                 ", totalmoney=" + totalmoney +
                 ", state=" + state +
                 ", waybillsn='" + waybillsn + '\'' +
+                ", orderDetails=" + orderDetails +
                 '}';
     }
 }

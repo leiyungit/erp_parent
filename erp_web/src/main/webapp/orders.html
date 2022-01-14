@@ -13,6 +13,7 @@
     <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
     <script type="text/javascript" src="ui/date.js"></script>
     <script type="text/javascript" src="ui/request.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/ordersCodeToName.js"></script>
     <script type="text/javascript" src="js/orders.js"></script>
     <script type="text/javascript" src="js/orders_add.js"></script>
@@ -100,6 +101,7 @@
 <div id="addOrdersDlg" style="padding:2px;">
     <form id="orderForm">
         <span id="addOrdersSupplier"></span>：<input id="supplier" name="t.supplieruuid" >
+        &nbsp;&nbsp;单据日期：<input id="notedate" name="t.notedate" class="easyui-datebox" />
         <div style="height:2px;"></div>
     </form>
     <table id="ordersgrid"></table>

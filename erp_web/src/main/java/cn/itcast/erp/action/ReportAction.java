@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 报表统计
@@ -19,6 +20,15 @@ public class ReportAction {
 
     private Date startDate;
     private Date endDate;
+    private int year;
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     public Date getStartDate() {
         return startDate;
@@ -37,7 +47,12 @@ public class ReportAction {
     }
 
     public void ordersReport(){
-        List list = this.reportBiz.ordersReport(startDate, endDate);
+        List list = this.reportBiz.soOrdersReport(startDate, endDate);
+        ResultUtil.write(JSON.toJSONString(list));
+    }
+
+    public void soTrendReport(){
+        List<Map<String, Object>> list = this.reportBiz.soTrendReport(year);
         ResultUtil.write(JSON.toJSONString(list));
     }
 }

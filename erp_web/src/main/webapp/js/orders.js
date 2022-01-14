@@ -5,6 +5,11 @@ $(function (){
     var url = 'orders_listByPage?t1.type=' +type; //  采购
     var btnText = "";
     var inoutTitle = "";
+    if(!$('#notedate').datebox('getValue')){
+        console.log("单据日期："+$('#notedate').datebox('getValue'))
+        $('#notedate').datebox('setValue', formatDate(new Date()));
+    }
+    console.log("单据日期2："+$('#notedate').datebox('getValue'))
     if(type == 1){
         btnText = '采购申请';
         inoutTitle = "入库";
@@ -270,7 +275,7 @@ function getColumns(){
     if(Request['type'] * 1 == 1){
         return [[
             {field:'uuid',title:'编号',width:100},
-            {field:'createtime',title:'生成日期',width:100,formatter:formatDate},
+            {field:'notedate',title:'单据日期',width:100,formatter:formatDate},
             {field:'checktime',title:'审核日期',width:100,formatter:formatDate},
             {field:'starttime',title:'确认日期',width:100,formatter:formatDate},
             {field:'endtime',title:'入库日期',width:100,formatter:formatDate},
@@ -287,7 +292,7 @@ function getColumns(){
     if(Request['type'] * 1 == 2){
         return [[
             {field:'uuid',title:'编号',width:100},
-            {field:'createtime',title:'生成日期',width:100,formatter:formatDate},
+            {field:'notedate',title:'单据日期',width:100,formatter:formatDate},
             {field:'endtime',title:'出库日期',width:100,formatter:formatDate},
             {field:'createrName',title:'下单员',width:100},
             {field:'enderName',title:'库管员',width:100},

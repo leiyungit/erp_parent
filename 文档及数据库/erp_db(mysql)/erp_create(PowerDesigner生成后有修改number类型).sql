@@ -152,6 +152,7 @@ ALTER TABLE orderdetail COMMENT '订单明细';
 CREATE TABLE orders
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
+   NOTEDATE             DATE NOT NULL COMMENT '单据日期',
    CREATETIME           DATETIME COMMENT '生成日期',
    CHECKTIME            DATETIME COMMENT '审核日期',
    STARTTIME            DATETIME COMMENT '确认日期',
@@ -197,6 +198,7 @@ ALTER TABLE returnorderdetail COMMENT '退货订单明细';
 CREATE TABLE returnorders
 (
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
+   NOTEDATE             DATE NOT NULL COMMENT '单据日期',
    CREATETIME           DATETIME COMMENT '生成日期',
    CHECKTIME            DATETIME COMMENT '检查日期',
    ENDTIME              DATETIME COMMENT '结束日期',
