@@ -166,6 +166,12 @@
 		  <artifactId>mail</artifactId>
 		  <version>1.4.4</version>
 	  </dependency>
+	  <!--定时任务-->
+	  <dependency>
+		  <groupId>org.quartz-scheduler</groupId>
+		  <artifactId>quartz</artifactId>
+		  <version>2.2.3</version>
+	  </dependency>
   </dependencies>
   	<!-- 版本锁定  -->
     <dependencyManagement>
