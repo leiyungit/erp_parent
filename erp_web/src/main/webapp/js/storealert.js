@@ -10,7 +10,23 @@ $(function () {
             {field:'outnum',title:'待发货数量',width:100}
         ]],
         singleSelect: true, // 只允许选择一行
-        rownumbers: true // 显示一个行号列
+        rownumbers: true, // 显示一个行号列
+        toolbar:[
+            {
+                text:'发送预警邮件',
+                iconCls: 'icon-add',
+                handler: function () {
+                    $.ajax({
+                        url:'storedetail_sendStorealertMail',
+                        dataType: 'json',
+                        type: 'post',
+                        success: function (rtn) {
+                            alertInfo(rtn.message);
+                        }
+                    })
+                }
+            }
+        ]
     });
     // 查询
     /*$('#btnSearch').bind('click', function () {

@@ -160,6 +160,12 @@
 		  <artifactId>shiro-aspectj</artifactId>
 		  <version>${shiro.ver}</version>
 	  </dependency>
+	  <!--邮件发送-->
+	  <dependency>
+		  <groupId>javax.mail</groupId>
+		  <artifactId>mail</artifactId>
+		  <version>1.4.4</version>
+	  </dependency>
   </dependencies>
   	<!-- 版本锁定  -->
     <dependencyManagement>
