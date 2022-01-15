@@ -23,7 +23,8 @@ insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('501','�
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('502','库存变动记录查询','icon-sys','storeoper.html','500');
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('503','库存预警','icon-sys','storealert.html','500');
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('600','统计分析','icon-sys',NULL,'0');
-insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('601','销售分析','icon-sys','report_order.html','600');
+insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('601','销售统计','icon-sys','report_order.html','600');
+insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('602','销售趋势分析','icon-sys','report_trend.html','600');
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('700','权限管理','icon-sys',NULL,'0');
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('701','重置密码','icon-sys','pwd.html','700');
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('702','角色管理','icon-sys','role.html','700');
