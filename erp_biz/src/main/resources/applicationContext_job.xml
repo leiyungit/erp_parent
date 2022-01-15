@@ -7,6 +7,7 @@
 
     <!-- 定义一个任务类 -->
     <bean id="mailJob" class="cn.itcast.erp.biz.job.MailJob">
+        <property name="storedetailBiz" ref="storedetailBiz"></property>
     </bean>
     <!-- 任务类描述 -->
     <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -20,7 +21,7 @@
         <property name="jobDetail" ref="jobDetail"></property>
         <!-- cron：7子表达式 -->
         <!--每天上午12：20 分和下午16：20分执行-->
-        <property name="cronExpression" value="0 50 12,15 * * ?"></property>
+        <property name="cronExpression" value="0 2 12,16 * * ?"></property>
     </bean>
     <!-- 任务调度管理容器 -->
     <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >

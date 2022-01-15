@@ -18,10 +18,12 @@ public class MailJob {
     private IStoredetailBiz storedetailBiz;
 
     public void setStoredetailBiz(IStoredetailBiz storedetailBiz) {
+        System.out.println("实例化商品库存业务类："+storedetailBiz);
         this.storedetailBiz = storedetailBiz;
     }
 
     public void sendStorealertMail(){
+        System.out.println("触发了定时任务");
         // 查询是否存在库存预警
         List<Storealert> storealertList = this.storedetailBiz.getStorealertList();
         if(storealertList.size() >0){
