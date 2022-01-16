@@ -102,3 +102,9 @@ Eclipse XML Editors and Tools
 * 可以分批入库，每次入库手动输入入库数量
 
   ![image.png](https://upload-images.jianshu.io/upload_images/22934254-ee1c0e846193fbab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 导出
+
+​	 供应商和客户的导出，curd.js的toolbar抽取共用，实际使用的html可以清除和动态添加
+
+​	采购单和销售单的导出，此单前端实现，加导出按钮

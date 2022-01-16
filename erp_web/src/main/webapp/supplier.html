@@ -10,6 +10,7 @@
 <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
 <script type="text/javascript" src="ui/request.js"></script>
+	<script type="text/javascript" src="ui/download.js"></script>
 <script type="text/javascript" src="js/crud.js"></script>
 <script type="text/javascript">
 	if(Request['type'] == 1){
@@ -22,10 +23,10 @@
 		listParam = "?t1.type=2";
 		saveParam = "?t.type=2";
 	}
-	var name="supplier";
-	var height = 300;
-	var width = 300;
-	var columns=[[
+	name="supplier";
+	height = 300;
+	width = 300;
+	columns=[[
 	  		    {field:'uuid',title:'编号',width:100},
 	  		    {field:'name',title:'名称',width:100},
 	  		    {field:'address',title:'联系地址',width:100},
@@ -39,7 +40,16 @@
 					return oper;
 				}}
 				]];
-
+	var butten = {
+		text: '导出',
+		iconCls: 'icon-excel',
+		handler: function () {
+			var submitData = $('#searchForm').serializeJSON();
+			$.download('supplier_export'+listParam,submitData)
+		}
+	}
+	toolbar.push('-');
+	toolbar.push(butten);
 </script>
 </head>
 <body>

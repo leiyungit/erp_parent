@@ -27,7 +27,7 @@
     <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
         <property name="triggers">
             <list>
-                 <ref bean="mailTrigger"/>
+                <!-- <ref bean="mailTrigger"/>-->
             </list>
         </property>
     </bean>
