@@ -3,6 +3,7 @@ import cn.itcast.erp.entity.Supplier;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 /**
  * 业务逻辑层接口
@@ -17,5 +18,13 @@ public interface ISupplierBiz extends IBaseBiz<Supplier>{
      * @param t1 查询条件
      */
 	void export(OutputStream os,Supplier t1) throws IOException;
+
+    /**
+     * 根据供应商/客户编号获取名称
+     * @param SupplierUuid
+     * @param SupplierMap 缓存容器
+     * @return
+     */
+    String getSupplierName(Long SupplierUuid, Map<Long,String> SupplierMap);
 }
 

@@ -9,6 +9,7 @@ import org.apache.poi.hssf.usermodel.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 业务逻辑类
@@ -24,6 +25,24 @@ public class SupplierBiz extends BaseBiz<Supplier> implements ISupplierBiz {
 		setBaseDao(supplierDao);
 	}
 
+    /**
+     * 根据供应商/客户编号获取名称
+     * @param SupplierUuid
+     * @param SupplierMap 缓存容器
+     * @return
+     */
+    public String getSupplierName(Long SupplierUuid, Map<Long,String> SupplierMap){
+        if(SupplierUuid == null){
+            return null;
+        }
+        if(!SupplierMap.containsKey(SupplierUuid)){
+            String name = this.supplierDao.get(SupplierUuid).getName();
+            SupplierMap.put(SupplierUuid, name);
+            // System.out.println("供应商名称："+name);
+            return name;
+        }
+        return SupplierMap.get(SupplierUuid);
+    }
 
 	/**
 	 * 导出到excel文件

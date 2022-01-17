@@ -5,6 +5,7 @@ $(function (){
     var url = 'orders_listByPage?t1.type=' +type; //  采购
     var btnText = "";
     var inoutTitle = "";
+    var toolbar = new Array();
     if(!$('#notedate').datebox('getValue')){
         console.log("单据日期："+$('#notedate').datebox('getValue'))
         $('#notedate').datebox('setValue', formatDate(new Date()));
@@ -105,26 +106,32 @@ $(function (){
         fitColumns: true,  // 在DataGrid控件底部显示分页工具栏
         singleSelect: true // 只允许选择一行
     });
+
     // 添加审核按钮
     if(Request['oper'] == 'doCheck'){
-        $('#ordersDlg').dialog({
-            toolbar: [{
-                text: '审核',
-                iconCls: 'icon-search',
-                handler: doCheck
-            }]
-        });
+        toolbar.push({
+            text: '审核',
+            iconCls: 'icon-search',
+            handler: doCheck
+        })
     }
     // 添加确认按钮
     if(Request['oper'] == 'doStart'){
-        $('#ordersDlg').dialog({
-            toolbar: [{
-                text: '确认',
-                iconCls: 'icon-search',
-                handler: doStart
-            }]
-        });
+        toolbar.push({
+            text: '确认',
+            iconCls: 'icon-search',
+            handler: doStart
+        })
     }
+    toolbar.push('-');
+    toolbar.push({
+        text: '导出',
+        iconCls: 'icon-excel',
+        handler: doExport
+    })
+    $('#ordersDlg').dialog({
+        toolbar: toolbar
+    });
     //  列表双击事件（模态窗口中），入库/出库
     if(Request['oper'] == 'doInStore' || Request['oper'] == 'doOutStore'){
         $('#itemgrid').datagrid({
@@ -268,6 +275,12 @@ function doInOutStore(){
     });
 }
 
+/**
+ * 导出
+ */
+function doExport(){
+    $.download("orders_export",{"id":$('#uuid').html()});
+}
 /**
  * 根据订单类型，获取不同的列
  */
