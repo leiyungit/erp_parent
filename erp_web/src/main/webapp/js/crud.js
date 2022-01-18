@@ -61,6 +61,43 @@ $(function () {
         closed: true, // 默认打开或关闭，true:关闭
         modal: true
     });
+    // 导入
+    if($('#importDlg')){
+        $('#importDlg').dialog({
+            title: '导入数据',
+            width: 360,
+            height: 110,
+            closed: true, // 默认打开或关闭，true:关闭
+            modal: true,
+            buttons:[
+                {
+                    text:'导入',
+                    iconCls:'icon-save',
+                    handler:function (){
+                        $.ajax({
+                            url: name+'_doImport',
+                            type: 'post',
+                            dataType:'json',
+                            data: new FormData($('#importForm')[0]),
+                            processData: false, // 要求为Boolean类型的参数，默认为true。默认情况下，发送的数据将被转换为对象（从技术角度来讲关非字符串）以配合默认内容类型”application/x-www-form-urlencoded”。如果要发送DOM树信息或者其它不希望转换的信息，请设置为false
+                            contentType: false, // 要求为String类型的参数，当发送信息至服务器时，内容编码类型默认为”application/x-www-form-urlencoded”。该默认值适合大多数应用场合
+                            success: function (rtn){
+                                console.log(rtn)
+                                alertInfo(rtn.message);
+                                if(rtn.success){
+                                    // 关闭窗口
+                                    $('#importDlg').dialog('close');
+                                    // 刷新列表
+                                    $('#grid').datagrid('reload');
+                                    $('#importDlg').find('[name=file]').val('');
+                                }
+                            }
+                        })
+                    }
+                }
+            ]
+        });
+    }
     // 保存，新增/编辑
     $('#btnSave').bind('click', function () {
         //把表单数据转换成json对象

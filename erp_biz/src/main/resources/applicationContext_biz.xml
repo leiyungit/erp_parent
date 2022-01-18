@@ -23,6 +23,7 @@
     <!-- 商品 -->
     <bean id="goodsBiz" class="cn.itcast.erp.biz.impl.GoodsBiz">
         <property name="goodsDao" ref="goodsDao"></property>
+        <property name="goodstypeBiz" ref="goodstypeBiz"></property>
     </bean>
     <!-- 商品分类 -->
     <bean id="goodstypeBiz" class="cn.itcast.erp.biz.impl.GoodstypeBiz">

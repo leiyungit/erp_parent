@@ -11,7 +11,9 @@
 <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
 <script type="text/javascript" src="ui/request.js"></script>
 	<script type="text/javascript" src="ui/download.js"></script>
-<script type="text/javascript" src="js/crud.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/crud.js"></script>
+
 <script type="text/javascript">
 	if(Request['type'] == 1){
 		document.title = "供应商管理";
@@ -41,16 +43,25 @@
 				}}
 				]];
 	var butten = {
-		text: '导出',
-		iconCls: 'icon-excel',
-		handler: function () {
-			var submitData = $('#searchForm').serializeJSON();
-			$.download('supplier_export'+listParam,submitData)
-		}
-	}
+            text: '导出',
+            iconCls: 'icon-excel',
+            handler: function () {
+                var submitData = $('#searchForm').serializeJSON();
+                $.download('supplier_export'+listParam,submitData)
+            }
+        }
 	toolbar.push('-');
 	toolbar.push(butten);
+    toolbar.push('-');
+    toolbar.push({
+        text: '导入',
+        iconCls: 'icon-save',
+        handler: function () {
+            $('#importDlg').dialog('open');
+        }
+    });
 </script>
+
 </head>
 <body>
 <div class="easyui-panel" style="padding-left:4px;border-bottom:0px;">
@@ -93,6 +104,10 @@
 		<button id="btnSave" type="button">保存</button>
 	</form>
 </div>
-
+<div id="importDlg" style="padding: 4px;">
+    <form id="importForm" enctype="multipart/form-data">
+        上传文件：<input type="file" name="file" style="border: 1px solid #95B8E7">
+    </form>
+</div>
 </body>
 </html>

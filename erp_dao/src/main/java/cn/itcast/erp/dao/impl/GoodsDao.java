@@ -21,7 +21,7 @@ public class GoodsDao extends BaseDao<Goods> implements IGoodsDao {
 	 */
 	public DetachedCriteria getDetachedCriteria(Goods goods1,Goods goods2,Object param){
 		DetachedCriteria dc=DetachedCriteria.forClass(Goods.class);
-		if(goods1!=null){
+		if(goods1 != null){
 			if(goods1.getName()!=null &&  goods1.getName().trim().length()>0)
 			{
 				dc.add(Restrictions.like("name", goods1.getName(), MatchMode.ANYWHERE));			
@@ -40,6 +40,12 @@ public class GoodsDao extends BaseDao<Goods> implements IGoodsDao {
 			}
 		
 		}
+		if(null != goods2){
+            if(null != goods2.getName() &&  goods2.getName().trim().length()>0)
+            {
+                dc.add(Restrictions.eq("name", goods2.getName()));
+            }
+        }
 		// todo: 1.价格区间查询；2.商品类型查询
 		return dc;
 	}

@@ -9,7 +9,11 @@
 <script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
-<script type="text/javascript" src="js/crud.js"></script>
+    <script type="text/javascript" src="ui/request.js"></script>
+    <script type="text/javascript" src="ui/download.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/crud.js"></script>
+
 <script type="text/javascript">
 	name="goods";
 	height = 300;
@@ -31,7 +35,24 @@
 					return oper;
 				}}
 				]];
-
+    var butten = {
+        text: '导出',
+        iconCls: 'icon-excel',
+        handler: function () {
+            var submitData = $('#searchForm').serializeJSON();
+            $.download(name + '_export'+listParam,submitData)
+        }
+    }
+    toolbar.push('-');
+    toolbar.push(butten);
+    toolbar.push('-');
+    toolbar.push({
+        text: '导入',
+        iconCls: 'icon-save',
+        handler: function () {
+            $('#importDlg').dialog('open');
+        }
+    });
 </script>
 </head>
 <body>
@@ -87,6 +108,10 @@
 		<button id="btnSave" type="button">保存</button>
 	</form>
 </div>
-
+<div id="importDlg" style="padding: 4px;">
+    <form id="importForm" enctype="multipart/form-data">
+        上传文件：<input type="file" name="file" style="border: 1px solid #95B8E7">
+    </form>
+</div>
 </body>
 </html>

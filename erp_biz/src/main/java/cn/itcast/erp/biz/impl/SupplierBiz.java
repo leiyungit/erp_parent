@@ -5,8 +5,10 @@ import cn.itcast.erp.biz.exception.ErpException;
 import cn.itcast.erp.dao.ISupplierDao;
 import cn.itcast.erp.entity.Supplier;
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.CellType;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
@@ -114,4 +116,55 @@ public class SupplierBiz extends BaseBiz<Supplier> implements ISupplierBiz {
 		}
 
 	}
+
+    /**
+     * excel导入
+     *
+     * @param is
+     * @throws IOException
+     */
+    @Override
+    public void doImport(InputStream is) throws IOException {
+        HSSFWorkbook book = null;
+        try {
+            book = new HSSFWorkbook(is);
+            HSSFSheet sheet = book.getSheetAt(0);
+            Integer type;
+            if("供应商".equals(sheet.getSheetName())){
+                type = SupplierTypeEnum.SUPPLIER.getCode();
+            }else if("客户".equals(sheet.getSheetName())){
+                type = SupplierTypeEnum.CUSTOMER.getCode();
+            }else{
+                throw new ErpException("工作表名称不正确");
+            }
+            // 最后一行的行号
+            int lastRowNum = sheet.getLastRowNum();
+            Supplier supplier = null;
+            for (int i = 1; i <= lastRowNum; i++) {
+                supplier = new Supplier();
+                String name = sheet.getRow(i).getCell(0).getStringCellValue().trim();
+                supplier.setName(name);
+                List<Supplier> list = this.supplierDao.getList(null,supplier, null);
+                if(list.size()>0){
+                    supplier = list.get(0);
+                }
+                supplier.setAddress(sheet.getRow(i).getCell(1).getStringCellValue());
+                supplier.setContact(sheet.getRow(i).getCell(2).getStringCellValue());
+                sheet.getRow(i).getCell(3).setCellType(CellType.STRING);
+                supplier.setTele(sheet.getRow(i).getCell(3).getStringCellValue());
+                supplier.setEmail(sheet.getRow(i).getCell(4).getStringCellValue());
+                if(list.size() == 0){
+                    supplier.setType(String.valueOf(type));
+                    this.supplierDao.add(supplier);
+                }
+            }
+        }  finally {
+            if(null != book)
+                try {
+                    book.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
 }

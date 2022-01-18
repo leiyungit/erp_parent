@@ -27,8 +27,15 @@ public class GoodstypeDao extends BaseDao<Goodstype> implements IGoodstypeDao {
 				dc.add(Restrictions.like("name", goodstype1.getName(), MatchMode.ANYWHERE));			
 			}
 		
-		}		
-		return dc;
+		}
+        if(goodstype2!=null){
+            if(goodstype2.getName()!=null &&  goodstype2.getName().trim().length()>0)
+            {
+                dc.add(Restrictions.eq("name", goodstype2.getName()));
+            }
+
+        }
+        return dc;
 	}
 	
 	
