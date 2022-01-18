@@ -20,7 +20,7 @@
 	height = 300;
 	width = 520;
 	columns=[[
-	  		    {field:'uuid',title:'编号',width:100},
+	  		    {field:'uuid',title:'编号',width:80},
 	  		    {field:'name',title:'名称',width:100},
                 {field:'spec',title:'规格',width:100},
                 {field:'model',title:'型号',width:100},
@@ -37,7 +37,7 @@
                 {field:'shelflife',title:'保质期(天)',width:100},
                 {field:'origin',title:'产地',width:100},
                 {field:'producer',title:'厂家',width:100},
-				{field:'-',title:'操作',width:200,formatter: function(value,row,index){
+				{field:'-',title:'操作',width:120,formatter: function(value,row,index){
 					var oper = "<a href=\"javascript:void(0)\" onclick=\"edit(" + row.uuid + ')">修改</a>';
 					oper += ' <a href="javascript:void(0)" onclick="del(' + row.uuid + ')">删除</a>';
 					return oper;
@@ -82,7 +82,7 @@
 	</form>
 	<div style="height:2px;"></div>
 </div>
-<table id="grid"></table>
+<div id="grid"></div>
 
 <div id="editDlg">
 	<form id="editForm">
