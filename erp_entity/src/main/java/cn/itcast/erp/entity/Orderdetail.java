@@ -21,6 +21,9 @@ public class Orderdetail {
     // private Long ordersuuid;//订单编号
     @JSONField(serialize = false) // fastJson在转换成字符串时反复的循环调用其属性造成的死循环
     private Orders orders; // 订单主表
+    // 新加字段
+    private String spec; // 规格
+    private String model; // 型号
     // 加两个字段，已入库数量，最后入库时间
 
     public Double getStorenum() {
@@ -100,6 +103,18 @@ public class Orderdetail {
     }
     public void setOrders(Orders orders) {
         this.orders = orders;
+    }
+    public String getSpec() {
+        return spec;
+    }
+    public void setSpec(String spec) {
+        this.spec = spec;
+    }
+    public String getModel() {
+        return model;
+    }
+    public void setModel(String model) {
+        this.model = model;
     }
 
     @Override

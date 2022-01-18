@@ -71,11 +71,23 @@ CREATE TABLE goods
    INPRICE              NUMERIC(8,2) COMMENT '进货价格',
    OUTPRICE             NUMERIC(8,2) COMMENT '销售价格',
    GOODSTYPEUUID        BIGINT COMMENT '商品类型',
+   SPEC			        VARCHAR(128) COMMENT '规格',
+   MODEL		        VARCHAR(128) COMMENT '型号',
+   COLOUR		        VARCHAR(32) COMMENT '颜色',
+   SHELFLIFE		    INT COMMENT '保质期(天)',
+   BEGINSTORENUM	    DOUBLE COMMENT '期初库存',
+   MINSAFENUM		    DOUBLE COMMENT '最低安全库存',
+   MAXSAFENUM		    DOUBLE COMMENT '最高安全库存'
    PRIMARY KEY (UUID)
 );
-
 ALTER TABLE goods COMMENT '商品';
-
+ALTER TABLE goods ADD SPEC VARCHAR(128)  COMMENT '规格' AFTER GOODSTYPEUUID;
+ALTER TABLE goods ADD MODEL VARCHAR(128)  COMMENT '型号' AFTER SPEC;
+ALTER TABLE goods ADD COLOUR VARCHAR(32)  COMMENT '颜色' AFTER MODEL;
+ALTER TABLE goods ADD SHELFLIFE INT  COMMENT '保质期(天)' AFTER COLOUR;
+ALTER TABLE goods ADD BEGINSTORENUM DOUBLE  COMMENT '期初库存' AFTER SHELFLIFE;
+ALTER TABLE goods ADD MINSAFENUM DOUBLE  COMMENT '最低安全库存' AFTER BEGINSTORENUM;
+ALTER TABLE goods ADD MAXSAFENUM DOUBLE  COMMENT '最高安全库存' AFTER MINSAFENUM;
 /*==============================================================*/
 /* Table: GOODSTYPE                                             */
 /*==============================================================*/
@@ -132,8 +144,10 @@ CREATE TABLE orderdetail
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
    GOODSNAME            VARCHAR(50) COMMENT '商品名称',
+   SPEC                 VARCHAR(128)  COMMENT '规格',
+   MODEL                VARCHAR(128)  COMMENT '型号',
    PRICE                NUMERIC(10,2) COMMENT '价格',
-   NUM                  NUMERIC(10,2) COMMENT '数量',
+   NUM                  DOUBLE COMMENT '数量',
    MONEY                NUMERIC(10,2) COMMENT '金额',
    ENDTIME              DATETIME COMMENT '结束日期',
    ENDER                BIGINT COMMENT '库管员',
@@ -146,6 +160,8 @@ CREATE TABLE orderdetail
 
 ALTER TABLE orderdetail COMMENT '订单明细';
 
+ALTER TABLE orderdetail ADD SPEC VARCHAR(128)  COMMENT '规格' AFTER GOODSNAME;
+ALTER TABLE orderdetail ADD MODEL VARCHAR(128)  COMMENT '型号' AFTER SPEC;
 /*==============================================================*/
 /* Table: ORDERS                                                */
 /*==============================================================*/
@@ -179,8 +195,10 @@ CREATE TABLE returnorderdetail
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
    GOODSNAME            VARCHAR(50) COMMENT '商品名称',
+   SPEC                 VARCHAR(128)  COMMENT '规格',
+   MODEL                VARCHAR(128)  COMMENT '型号',
    PRICE                NUMERIC(10,2) COMMENT '价格',
-   NUM                  NUMERIC COMMENT '数量',
+   NUM                  DOUBLE COMMENT '数量',
    MONEY                NUMERIC(10,2) COMMENT '金额',
    ENDTIME              DATETIME COMMENT '结束日期',
    ENDER                BIGINT COMMENT '库管员',
@@ -191,7 +209,6 @@ CREATE TABLE returnorderdetail
 );
 
 ALTER TABLE returnorderdetail COMMENT '退货订单明细';
-
 /*==============================================================*/
 /* Table: RETURNORDERS                                          */
 /*==============================================================*/
@@ -262,7 +279,7 @@ CREATE TABLE storedetail
    UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    STOREUUID            BIGINT COMMENT '仓库编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
-   NUM                  NUMERIC(10,2) COMMENT '数量',
+   NUM                  DOUBLE COMMENT '数量',
    PRIMARY KEY (UUID)
 );
 
@@ -278,7 +295,7 @@ CREATE TABLE storeoper
    OPERTIME             DATETIME COMMENT '操作日期',
    STOREUUID            BIGINT COMMENT '仓库编号',
    GOODSUUID            BIGINT COMMENT '商品编号',
-   NUM                  NUMERIC(10,2) COMMENT '数量',
+   NUM                  DOUBLE COMMENT '数量',
    TYPE                 INT(1) COMMENT '1：入库 2：出库',
    OPERDESC             VARCHAR(32) COMMENT '操作描述',
    PRIMARY KEY (UUID)

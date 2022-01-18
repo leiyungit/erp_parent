@@ -10,13 +10,22 @@ $(function (){
         columns: [[
             {field:'goodsuuid',title:'商品编号',width:100,editor:{type:'numberbox',options:{disabled:true}}}, // 禁止编辑
             {field:'goodsname',title:'商品名称',width:100,editor:{type:'combobox',options: {
-                url:'goods_list',panelWidth: 500,valueField:'name',textField:'name',panelWidth: 200,
+                url:'goods_list',panelWidth: 500,valueField:'name',textField:'name',panelWidth: 300,
                         panelHeight: 'auto',
                         formatter: formatItemGoods,
                         onSelect:function (goods){
+                            // console.log(goods);
                             // 列中必须声明editor
                             var goodsuuidEditor = getEditor('goodsuuid');
                             $(goodsuuidEditor.target).val(goods.uuid);
+                            // 规格
+                            var specEditor = getEditor('spec');
+                            $(specEditor.target).val(goods.spec);
+                            $(specEditor.target).attr('disabled','disabled');
+                            // 型号
+                            var modelEditor = getEditor('model');
+                            $(modelEditor.target).val(goods.model);
+                            $(modelEditor.target).attr('disabled','disabled');
                             // 价格
                             var priceEditor = getEditor('price');
                             $(priceEditor.target).val(goods.inprice);
@@ -30,6 +39,8 @@ $(function (){
                             // $('#ordersgrid').datagrid('getRows')[existEditIndex].price = goods.inprice;
                         }
                     }}},
+            {field:'spec',title:'规格',width:100,editor:{type:'text',options:{disabled:true}}},
+            {field:'model',title:'型号',width:100,editor:{type:'text',options:{disabled:true}}},
             {field:'price',title:'价格',width:100,editor:{type:'numberbox',options:{precision:2}}},
             {field:'num',title:'数量',width:100,editor:{type:'numberbox',options:{precision:2}}},
             {field:'money',title:'金额',width:100,editor:{type:'numberbox',options:{disabled:true,precision:2}}},
@@ -167,7 +178,9 @@ function getEditor(filedName){
  */
 function formatItemGoods(row){
     var s = '<span style="font-weight:bold">' + row.name + '</span><br/>' +
-        '<span style="color:#888;padding-left: 10px;">' + row.producer + '</span>' +
+        '<span style="color:#888;padding-left: 10px;">' + (row.spec?row.spec:'') + '</span>' +
+        '<span style="color:#888;padding-left: 10px;">' + (row.model?row.model:'') + '</span>' +
+        '<span style="color:#888;padding-left: 10px;">' + (row.producer?row.producer:'') + '</span>' +
         '<span style="color:#888;padding-left: 10px;">' + row.inprice +'/'+row.unit+ '</span>';
     return s;
 }

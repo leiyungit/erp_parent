@@ -97,6 +97,8 @@ $(function (){
             {field:'uuid',title:'编号',width:100},
             {field:'goodsuuid',title:'商品编号',width:100},
             {field:'goodsname',title:'商品名称',width:100},
+            {field:'spec',title:'规格',width:100},
+            {field:'model',title:'型号',width:100},
             {field:'price',title:'价格',width:100},
             {field:'num',title:'数量',width:100},
             {field:'money',title:'金额',width:100},
@@ -176,7 +178,7 @@ $(function (){
     //var _content="<iframe scrolling='auto' frameborder='0' src='../erp/orders_add.html?type="+type+"' style='width:100%; height:100%; display:block;'></iframe>";
     $('#addOrdersDlg').dialog({
         title:'添加订单',
-        width:700,
+        width:860,
         height:400,
         modal:true,
         closed:true,

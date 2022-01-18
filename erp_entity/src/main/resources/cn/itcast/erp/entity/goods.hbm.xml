@@ -12,7 +12,14 @@
         <property name="producer" /> 
         <property name="unit" /> 
         <property name="inprice" /> 
-        <property name="outprice" /> 
+        <property name="outprice" />
+        <property name="spec" />
+        <property name="model" />
+        <property name="colour" />
+        <property name="shelflife" />
+        <property name="beginstorenum" />
+        <property name="minsafenum" />
+        <property name="maxsafenum" />
         <!--<property name="goodstypeuuid" />-->
         <many-to-one name="goodstype" class="cn.itcast.erp.entity.Goodstype" column="goodstypeuuid"></many-to-one>
     </class>

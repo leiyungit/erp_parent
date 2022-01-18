@@ -5,6 +5,7 @@
 <title>商品管理</title>
 <link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/default.css">
 <script type="text/javascript" src="ui/jquery.min.js"></script>
 <script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
@@ -17,18 +18,25 @@
 <script type="text/javascript">
 	name="goods";
 	height = 300;
+	width = 520;
 	columns=[[
 	  		    {field:'uuid',title:'编号',width:100},
 	  		    {field:'name',title:'名称',width:100},
-	  		    {field:'origin',title:'产地',width:100},
-	  		    {field:'producer',title:'厂家',width:100},
+                {field:'spec',title:'规格',width:100},
+                {field:'model',title:'型号',width:100},
+                {field:'colour',title:'颜色',width:100},
+                {field:'goodstype',title:'商品类型',width:100,formatter:function(value){
+                        return value.name;
+                    }},
 	  		    {field:'unit',title:'计量单位',width:100},
 	  		    {field:'inprice',title:'进货价格',width:100},
 	  		    {field:'outprice',title:'销售价格',width:100},
-	  		    {field:'goodstype',title:'商品类型',width:100,formatter:function(value){
-	  		    	return value.name;
-	  		    }},
-
+                {field:'beginstorenum',title:'期初库存',width:100},
+                {field:'minsafenum',title:'最低安全库存',width:100},
+                {field:'maxsafenum',title:'最高安全库存',width:100},
+                {field:'shelflife',title:'保质期(天)',width:100},
+                {field:'origin',title:'产地',width:100},
+                {field:'producer',title:'厂家',width:100},
 				{field:'-',title:'操作',width:200,formatter: function(value,row,index){
 					var oper = "<a href=\"javascript:void(0)\" onclick=\"edit(" + row.uuid + ')">修改</a>';
 					oper += ' <a href="javascript:void(0)" onclick="del(' + row.uuid + ')">删除</a>';
@@ -54,6 +62,7 @@
         }
     });
 </script>
+
 </head>
 <body>
 <div class="easyui-panel" style="padding-left:4px;border-bottom:0px;">
@@ -80,30 +89,36 @@
 			<input name="t.uuid" type="hidden"> 
 
 		<table>
-						<tr>
-				<td>名称</td><td><input name="t.name"> </td>
-			</tr>
 			<tr>
-				<td>产地</td><td><input name="t.origin"> </td>
-			</tr>
-			<tr>
-				<td>厂家</td><td><input name="t.producer"> </td>
-			</tr>
-			<tr>
-				<td>计量单位</td><td><input name="t.unit"> </td>
-			</tr>
-			<tr>
-				<td>进货价格</td><td><input name="t.inprice" class="easyui-numberbox" data-options="min:0,precision:2,prefix:'￥'"> </td>
-			</tr>
-			<tr>
-				<td>销售价格</td><td><input name="t.outprice" class="easyui-numberbox" data-options="min:0,precision:2,prefix:'￥'"> </td>
-			</tr>
-			<tr>
-				<td>商品类型</td><td><input name="t.goodstype.uuid" class="easyui-combobox" data-options="
+				<td class="align-right">名称</td><td><input name="t.name"> </td>
+                <td class="align-right">商品类型</td><td><input name="t.goodstype.uuid" class="easyui-combobox" data-options="
 			url:'goodstype_list', valueField:'uuid', textField:'name'
 				"> </td>
 			</tr>
-
+            <tr>
+                <td class="align-right">规格</td><td><input name="t.spec"> </td>
+                <td class="align-right">型号</td><td><input name="t.model"> </td>
+            </tr>
+			<tr>
+				<td class="align-right">计量单位</td><td><input name="t.unit"> </td>
+                <td class="align-right">期初库存</td><td><input name="t.beginstorenum"> </td>
+			</tr>
+			<tr>
+				<td class="align-right">进货价格</td><td><input name="t.inprice" class="easyui-numberbox" data-options="min:0,precision:2,prefix:'￥'"> </td>
+                <td class="align-right">最低安全库存</td><td><input name="t.minsafenum"> </td>
+            </tr>
+			<tr>
+				<td class="align-right">销售价格</td><td><input name="t.outprice" class="easyui-numberbox" data-options="min:0,precision:2,prefix:'￥'"> </td>
+                <td class="align-right">最高安全库存</td><td><input name="t.maxsafenum"> </td>
+            </tr>
+            <tr>
+                <td class="align-right">保质期(天)</td><td><input name="t.shelflife"> </td>
+                <td class="align-right">颜色</td><td><input name="t.colour"> </td>
+            </tr>
+            <tr>
+                <td class="align-right">产地</td><td><input name="t.origin"> </td>
+                <td class="align-right">厂家</td><td><input name="t.producer"> </td>
+            </tr>
 		</table>
 		<button id="btnSave" type="button">保存</button>
 	</form>
