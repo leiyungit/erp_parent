@@ -6,6 +6,7 @@ import cn.itcast.erp.entity.Emp;
 import cn.itcast.erp.entity.Orderdetail;
 import cn.itcast.erp.entity.Orders;
 import cn.itcast.erp.utils.ResultUtil;
+import cn.itcast.redsun.ws.Waybilldetail;
 import com.alibaba.fastjson.JSON;
 import org.apache.struts2.ServletActionContext;
 
@@ -128,5 +129,19 @@ public class OrdersAction extends BaseAction<Orders> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**运单号*/
+    private Long waybillsn;
+    public Long getWaybillsn() {
+        return waybillsn;
+    }
+    public void setWaybillsn(Long waybillsn) {
+        this.waybillsn = waybillsn;
+    }
+    /**查询运单详情*/
+    public void waybilldetailList(){
+        List<Waybilldetail> waybilldetails = this.ordersBiz.waybilldetailList(waybillsn);
+        ResultUtil.write(JSON.toJSONString(waybilldetails));
     }
 }

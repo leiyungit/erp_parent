@@ -42,12 +42,15 @@
         <property name="orderdetailDao" ref="orderdetailDao"></property>
         <property name="storedetailDao" ref="storedetailDao"></property>
         <property name="storeoperDao" ref="storeoperDao"></property>
+        <property name="supplierBiz" ref="supplierBiz"></property>
+        <property name="waybillWs" ref="waybillClient"></property>
     </bean>
     <!-- 订单  -->
     <bean id="ordersBiz" class="cn.itcast.erp.biz.impl.OrdersBiz">
         <property name="ordersDao" ref="ordersDao"></property>
         <property name="empBiz" ref="empBiz"></property>
         <property name="supplierBiz" ref="supplierBiz"></property>
+        <property name="waybillWs" ref="waybillClient"></property>
         <!--构造函数注入
         <constructor-arg name="ordersDao" ref="ordersDao"></constructor-arg>
         <constructor-arg name="goodsDao" ref="goodsDao"></constructor-arg>-->

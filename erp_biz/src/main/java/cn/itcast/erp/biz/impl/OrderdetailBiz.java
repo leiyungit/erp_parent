@@ -1,6 +1,7 @@
 package cn.itcast.erp.biz.impl;
 
 import cn.itcast.erp.biz.IOrderdetailBiz;
+import cn.itcast.erp.biz.ISupplierBiz;
 import cn.itcast.erp.biz.constant.OrderConstant;
 import cn.itcast.erp.biz.enums.OrderDetailStateEnum;
 import cn.itcast.erp.biz.enums.OrdersStateEnum;
@@ -10,10 +11,8 @@ import cn.itcast.erp.biz.utils.DoubleUtil;
 import cn.itcast.erp.dao.IOrderdetailDao;
 import cn.itcast.erp.dao.IStoredetailDao;
 import cn.itcast.erp.dao.IStoreoperDao;
-import cn.itcast.erp.entity.Orderdetail;
-import cn.itcast.erp.entity.Orders;
-import cn.itcast.erp.entity.Storedetail;
-import cn.itcast.erp.entity.Storeoper;
+import cn.itcast.erp.entity.*;
+import cn.itcast.redsun.ws.impl.IWaybillWs;
 
 import java.util.Date;
 import java.util.List;
@@ -30,6 +29,18 @@ public class OrderdetailBiz extends BaseBiz<Orderdetail> implements IOrderdetail
     private IStoredetailDao storedetailDao;
     // 库存变更记录
     private IStoreoperDao storeoperDao;
+    // 供应商
+    private ISupplierBiz supplierBiz;
+    // webService
+    private IWaybillWs waybillWs;
+
+    public void setSupplierBiz(ISupplierBiz supplierBiz) {
+        this.supplierBiz = supplierBiz;
+    }
+
+    public void setWaybillWs(IWaybillWs waybillWs) {
+        this.waybillWs = waybillWs;
+    }
 
     public void setOrderdetailDao(IOrderdetailDao orderdetailDao) {
         this.orderdetailDao = orderdetailDao;
@@ -274,6 +285,11 @@ public class OrderdetailBiz extends BaseBiz<Orderdetail> implements IOrderdetail
             orders.setEnder(empUuid);
             orders.setEndtime(detail.getEndtime());
             orders.setState(OrdersStateEnum.OUT.getCode());
+            Supplier supplier = this.supplierBiz.get(orders.getSupplieruuid());
+            Long userId = 5l; // 用户id
+            // Long userId, String toAddress, String addressee, String tele, String info
+            this.waybillWs.addWaybill(userId,supplier.getAddress(),supplier.getName() + "/" + supplier.getContact(),supplier.getTele(),"--");
+            // TODO：最后新加一个销售出库表单，如上运单号应该绑定到出库单中
         }
         return true;
     }

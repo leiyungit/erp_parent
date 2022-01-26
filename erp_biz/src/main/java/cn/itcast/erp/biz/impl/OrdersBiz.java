@@ -13,6 +13,8 @@ import cn.itcast.erp.dao.ISupplierDao;
 import cn.itcast.erp.entity.Goods;
 import cn.itcast.erp.entity.Orderdetail;
 import cn.itcast.erp.entity.Orders;
+import cn.itcast.redsun.ws.Waybilldetail;
+import cn.itcast.redsun.ws.impl.IWaybillWs;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -36,6 +38,12 @@ public class OrdersBiz extends BaseBiz<Orders> implements IOrdersBiz {
     private IOrdersDao ordersDao;
     private IEmpBiz empBiz;
     private ISupplierBiz supplierBiz;
+    /** webService*/
+    private IWaybillWs waybillWs;
+
+    public void setWaybillWs(IWaybillWs waybillWs) {
+        this.waybillWs = waybillWs;
+    }
 
     public void setOrdersDao(IOrdersDao ordersDao) {
         this.ordersDao = ordersDao;
@@ -302,5 +310,16 @@ public class OrdersBiz extends BaseBiz<Orders> implements IOrdersBiz {
                 }
             }
         }
+    }
+
+    /**
+     * 根据运单号查询运单详情
+     *
+     * @param sn
+     * @return
+     */
+    @Override
+    public List<Waybilldetail> waybilldetailList(Long sn) {
+        return waybillWs.waybilldetailList(sn);
     }
 }

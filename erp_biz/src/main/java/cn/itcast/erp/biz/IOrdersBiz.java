@@ -1,7 +1,9 @@
 package cn.itcast.erp.biz;
 import cn.itcast.erp.entity.Orders;
+import cn.itcast.redsun.ws.Waybilldetail;
 
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * 业务逻辑层接口
@@ -30,6 +32,13 @@ public interface IOrdersBiz extends IBaseBiz<Orders>{
      */
     void exportById(OutputStream os, Long uuid);
 
+    /**
+     * 根据运单号查询运单详情
+     * @param sn
+     * @return
+     */
+    List<Waybilldetail> waybilldetailList(Long sn);
     // void doInStore();
+
 }
 

@@ -73,7 +73,7 @@ $(function (){
             // rowIndex：点击的行的索引值，该索引值从0开始
             // rowData：对应于点击行的记录。
             // console.log(rowData)
-            $('#ordersDlg').dialog('open')
+
             for (var key in rowData) {
                 // console.log(key + ":" + rowData[key])
                 if(key == 'state'){
@@ -84,7 +84,56 @@ $(function (){
                     $('#'+key).html(rowData[key]);
                 }
             }
+
+            var options = $('#ordersDlg').dialog('options');
+            var toolbar1 = options.toolbar;
+            var arrIndex  = toolbar1.findIndex(item=>{
+                return item.text=='运单详情';
+            })
+            // 工具栏中如果已经存在运单详情按钮，则需要移除
+            if(arrIndex>-1){
+                console.log('已经存在运单详情按钮的位置: '+arrIndex)
+                toolbar1.splice(arrIndex);
+                // toolbar1.pop();
+                // 重新渲染工具栏
+                $('#ordersDlg').dialog({
+                    toolbar:toolbar1
+                })
+            }
+            // 销售单，并且已经出库
+            var waybillsn = rowData['waybillsn'];
+            if(!waybillsn){
+                console.log('没有运单号：'+waybillsn)
+                $('#waybillsn').html('');
+            }else{
+                // console.log('运单号：'+ waybillsn)
+                //$('#waybillDlg').dialog();
+                toolbar1.push({
+                    text: '运单详情',
+                    iconCls: 'icon-search',
+                    handler: function (){
+                        $('#waybillDlg').dialog('open');
+                        $('#waybillGrid').datagrid({
+                            url: 'orders_waybilldetailList?waybillsn='+waybillsn,
+                            dataType:"json",
+                            type: 'post',
+                            columns: [[
+                                {field:'exedate',title:'执行日期',width:100},
+                                {field:'exetime',title:'执行时间',width:100},
+                                {field:'info',title:'执行信息',width:100}
+                            ]],
+                            singleSelect: true, // 只允许选择一行
+                        })
+
+                    }
+                })
+                // 重新渲染工具栏
+                $('#ordersDlg').dialog({
+                    toolbar:toolbar1
+                })
+            }
             // console.log(rowData.orderDetails);
+            $('#ordersDlg').dialog('open')
             // 加载明细
             $('#itemgrid').datagrid('loadData',rowData.orderDetails);
         }
