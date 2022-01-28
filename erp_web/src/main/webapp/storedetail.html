@@ -20,7 +20,7 @@
             {field: 'num', title: '数量', width: 100},
             {
                 field: '-', title: '操作', width: 200, formatter: function (value, row, index) {
-                    //todo: 点击明细 打开库存变动记录
+                    //点击明细 打开库存变动记录
                     // var oper = '<a href=\"javascript:void(0)\" onclick=\"openStoreoper('++')\">明细</a>';
                     var oper = '<a href="javascript:void(0)" onclick="openStoreoper(' + row.storeuuid + ','+ row.goodsuuid + ')">明细</a>';
                     return oper;

@@ -11,7 +11,7 @@ public class Menu {
 	private String menuname;//菜单名称
 	private String icon;//图标
 	private String url;//URL
-	private List<Emp> menus;
+	private List<Menu> menus;
 	// private String pid;//上级菜单ID
 
 	public String getMenuid() {		
@@ -38,10 +38,10 @@ public class Menu {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public List<Emp> getMenus() {
+	public List<Menu> getMenus() {
 		return menus;
 	}
-	public void setMenus(List<Emp> menus) {
+	public void setMenus(List<Menu> menus) {
 		this.menus = menus;
 	}
 

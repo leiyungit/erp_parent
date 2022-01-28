@@ -224,7 +224,7 @@ $(function (){
         ]
     });
     // 采购申请窗口
-    //var _content="<iframe scrolling='auto' frameborder='0' src='../erp/orders_add.html?type="+type+"' style='width:100%; height:100%; display:block;'></iframe>";
+    //var _content="<iframe scrolling='auto' frameborder='0' src='../erp/orders_add-delete.html?type="+type+"' style='width:100%; height:100%; display:block;'></iframe>";
     $('#addOrdersDlg').dialog({
         title:'添加订单',
         width:860,

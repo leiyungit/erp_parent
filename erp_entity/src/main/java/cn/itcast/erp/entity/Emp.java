@@ -3,6 +3,8 @@ package cn.itcast.erp.entity;
 import com.alibaba.fastjson.annotation.JSONCreator;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.util.List;
+
 /**
  * 实体类
  * @author Administrator *
@@ -20,8 +22,16 @@ public class Emp {
 	private java.util.Date birthday;//出生年月日
 	// private Long depuuid;//部门编号
     private Dep dep; //部门 需配置xml映射
+    @JSONField(serialize = false)
+    private List<Role> roles; // 角色
 
-	public Long getUuid() {		
+    public List<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+    public Long getUuid() {
 		return uuid;
 	}
 	public void setUuid(Long uuid) {

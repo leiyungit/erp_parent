@@ -1,4 +1,9 @@
 package cn.itcast.erp.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.util.List;
+
 /**
  * 实体类
  * @author Administrator *
@@ -6,6 +11,8 @@ package cn.itcast.erp.entity;
 public class Role {	
 	private Long uuid;//编号
 	private String name;//名称
+    @JSONField(serialize = false)
+    private List<Menu> menus; // 权限菜单
 
 	public Long getUuid() {		
 		return uuid;
@@ -19,5 +26,11 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
+    public List<Menu> getMenus() {
+        return menus;
+    }
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
+    }
 
 }
