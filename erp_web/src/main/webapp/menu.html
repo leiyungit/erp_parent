@@ -14,16 +14,16 @@
 	var name="menu";
 	var columns=[[
 	  		    {field:'menuid',title:'菜单ID',width:100},
-	  		    {field:'menuname',title:'菜单名称',width:100},
+	  		    {field:'menuname',title:'菜单名称',width:150},
 	  		    {field:'icon',title:'图标',width:100},
-	  		    {field:'url',title:'URL',width:100},
-	  		    {field:'pid',title:'上级菜单ID',width:100},
+	  		    {field:'url',title:'URL',width:200},
+	  		    /*{field:'pid',title:'上级菜单ID',width:100},*/
 
-				{field:'-',title:'操作',width:200,formatter: function(value,row,index){
+				/*{field:'-',title:'操作',width:200,formatter: function(value,row,index){
 					var oper = "<a href=\"javascript:void(0)\" onclick=\"edit(" + row.menuid + ')">修改</a>';
 					oper += ' <a href="javascript:void(0)" onclick="del(' + row.menuid + ')">删除</a>';
 					return oper;
-				}}
+				}}*/
 				]];
 
 </script>

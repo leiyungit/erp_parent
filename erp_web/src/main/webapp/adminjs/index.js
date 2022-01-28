@@ -28,9 +28,9 @@ $(function(){
 	
 	// 显示用户名
 	showName();
-	//获取菜单数据
+	//获取菜单数据 readMenusByEmpuuid  getMenuTree
 	$.ajax({
-		url: 'menu_getMenuTree',
+		url: 'menu_readMenusByEmpuuid',
 		type: 'post',
 		dataType: 'json',
 		success: function(rtn){

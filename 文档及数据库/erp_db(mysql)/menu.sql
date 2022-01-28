@@ -30,3 +30,4 @@ insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('701','�
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('702','角色管理','icon-sys','role.html','700');
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('703','角色权限设置','icon-sys','rolemenuSet.html','700');
 insert into `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) values('704','用户角色设置','icon-sys','empRoleSet.html','700');
+INSERT INTO `menu` (`MENUID`, `MENUNAME`, `ICON`, `URL`, `PID`) VALUES('710','菜单','icon-sys','menu.html','700');

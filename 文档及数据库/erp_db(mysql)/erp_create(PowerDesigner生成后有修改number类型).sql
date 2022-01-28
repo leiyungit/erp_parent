@@ -50,10 +50,9 @@ ALTER TABLE emp COMMENT '员工';
 /*==============================================================*/
 CREATE TABLE emp_role
 (
-   UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    EMPUUID              BIGINT COMMENT '员工编号',
    ROLEUUID             BIGINT COMMENT '角色编号',
-   PRIMARY KEY (UUID)
+   PRIMARY KEY (`EMPUUID`,`ROLEUUID`)
 );
 
 ALTER TABLE emp_role COMMENT '员工角色';
@@ -250,10 +249,9 @@ ALTER TABLE role COMMENT '角色';
 /*==============================================================*/
 CREATE TABLE role_menu
 (
-   UUID                 BIGINT NOT NULL AUTO_INCREMENT COMMENT '编号',
    ROLEUUID             BIGINT,
    MENUUUID             VARCHAR(10),
-   PRIMARY KEY (UUID)
+   PRIMARY KEY (`ROLEUUID`,`MENUUUID`)
 );
 
 ALTER TABLE role_menu COMMENT '角色菜单';

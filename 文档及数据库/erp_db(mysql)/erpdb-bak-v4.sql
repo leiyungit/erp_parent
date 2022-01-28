@@ -50,10 +50,9 @@ CREATE TABLE `emp` (
 DROP TABLE IF EXISTS `emp_role`;
 
 CREATE TABLE `emp_role` (
-  `UUID` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `EMPUUID` bigint DEFAULT NULL COMMENT '员工编号',
-  `ROLEUUID` bigint DEFAULT NULL COMMENT '角色编号',
-  PRIMARY KEY (`UUID`)
+  `EMPUUID` bigint NOT NULL COMMENT '员工编号',
+  `ROLEUUID` bigint NOT NULL COMMENT '角色编号',
+  PRIMARY KEY (`EMPUUID`,`ROLEUUID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='员工角色';
 
 /*Table structure for table `goods` */
@@ -69,8 +68,15 @@ CREATE TABLE `goods` (
   `INPRICE` decimal(8,2) DEFAULT NULL COMMENT '进货价格',
   `OUTPRICE` decimal(8,2) DEFAULT NULL COMMENT '销售价格',
   `GOODSTYPEUUID` bigint DEFAULT NULL COMMENT '商品类型',
+  `SPEC` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '规格',
+  `MODEL` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '型号',
+  `COLOUR` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '颜色',
+  `SHELFLIFE` int DEFAULT NULL COMMENT '保质期(天)',
+  `BEGINSTORENUM` double DEFAULT NULL COMMENT '期初库存',
+  `MINSAFENUM` double DEFAULT NULL COMMENT '最低安全库存',
+  `MAXSAFENUM` double DEFAULT NULL COMMENT '最高安全库存',
   PRIMARY KEY (`UUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='商品';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='商品';
 
 /*Table structure for table `goodstype` */
 
@@ -122,8 +128,10 @@ CREATE TABLE `orderdetail` (
   `UUID` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
   `GOODSUUID` bigint DEFAULT NULL COMMENT '商品编号',
   `GOODSNAME` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '商品名称',
+  `SPEC` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '规格',
+  `MODEL` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '型号',
   `PRICE` decimal(10,2) DEFAULT NULL COMMENT '价格',
-  `NUM` decimal(10,2) DEFAULT NULL COMMENT '订单数量',
+  `NUM` double DEFAULT NULL COMMENT '订单数量',
   `MONEY` decimal(10,2) DEFAULT NULL COMMENT '金额',
   `ENDTIME` datetime DEFAULT NULL COMMENT '结束日期',
   `ENDER` bigint DEFAULT NULL COMMENT '库管员',
@@ -132,7 +140,7 @@ CREATE TABLE `orderdetail` (
   `STATE` bigint DEFAULT NULL COMMENT '采购：0=未入库，1=已入库  销售：0=未出库，1=部分出库',
   `ORDERSUUID` bigint DEFAULT NULL COMMENT '订单编号',
   PRIMARY KEY (`UUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单明细';
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单明细';
 
 /*Table structure for table `orders` */
 
@@ -140,6 +148,7 @@ DROP TABLE IF EXISTS `orders`;
 
 CREATE TABLE `orders` (
   `UUID` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `NOTEDATE` date NOT NULL COMMENT '单据日期',
   `CREATETIME` datetime DEFAULT NULL COMMENT '生成日期',
   `CHECKTIME` datetime DEFAULT NULL COMMENT '审核日期',
   `STARTTIME` datetime DEFAULT NULL COMMENT '确认日期',
@@ -154,7 +163,7 @@ CREATE TABLE `orders` (
   `STATE` bigint DEFAULT NULL COMMENT '采购: 0:未审核 1:已审核, 2:已确认, 3:已入库；销售：0:未出库 1:已出库',
   `WAYBILLSN` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '运单号',
   PRIMARY KEY (`UUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单';
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单';
 
 /*Table structure for table `returnorderdetail` */
 
@@ -181,6 +190,7 @@ DROP TABLE IF EXISTS `returnorders`;
 
 CREATE TABLE `returnorders` (
   `UUID` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `NOTEDATE` date DEFAULT NULL COMMENT '单据日期',
   `CREATETIME` datetime DEFAULT NULL COMMENT '生成日期',
   `CHECKTIME` datetime DEFAULT NULL COMMENT '检查日期',
   `ENDTIME` datetime DEFAULT NULL COMMENT '结束日期',
@@ -204,17 +214,16 @@ CREATE TABLE `role` (
   `UUID` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
   `NAME` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '名称',
   PRIMARY KEY (`UUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='角色';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='角色';
 
 /*Table structure for table `role_menu` */
 
 DROP TABLE IF EXISTS `role_menu`;
 
 CREATE TABLE `role_menu` (
-  `UUID` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ROLEUUID` bigint DEFAULT NULL,
-  `MENUUUID` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`UUID`)
+  `ROLEUUID` bigint NOT NULL,
+  `MENUUUID` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`ROLEUUID`,`MENUUUID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='角色菜单';
 
 /*Table structure for table `store` */
@@ -236,9 +245,9 @@ CREATE TABLE `storedetail` (
   `UUID` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
   `STOREUUID` bigint DEFAULT NULL COMMENT '仓库编号',
   `GOODSUUID` bigint DEFAULT NULL COMMENT '商品编号',
-  `NUM` decimal(10,2) DEFAULT NULL COMMENT '数量',
+  `NUM` double DEFAULT NULL COMMENT '数量',
   PRIMARY KEY (`UUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='仓库库存';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='仓库库存';
 
 /*Table structure for table `storeoper` */
 
@@ -250,11 +259,11 @@ CREATE TABLE `storeoper` (
   `OPERTIME` datetime DEFAULT NULL COMMENT '操作日期',
   `STOREUUID` bigint DEFAULT NULL COMMENT '仓库编号',
   `GOODSUUID` bigint DEFAULT NULL COMMENT '商品编号',
-  `NUM` decimal(10,2) DEFAULT NULL COMMENT '数量',
+  `NUM` double DEFAULT NULL COMMENT '数量',
   `TYPE` int DEFAULT NULL COMMENT '1：入库 2：出库',
   `OPERDESC` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '操作描述',
   PRIMARY KEY (`UUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='仓库操作记录';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='仓库操作记录';
 
 /*Table structure for table `supplier` */
 
@@ -269,7 +278,57 @@ CREATE TABLE `supplier` (
   `EMAIL` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮件地址',
   `TYPE` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '1：供应商 2：客户',
   PRIMARY KEY (`UUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='供应商';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='供应商';
+
+/*Table structure for table `waybill` */
+
+DROP TABLE IF EXISTS `waybill`;
+
+CREATE TABLE `waybill` (
+  `sn` bigint NOT NULL AUTO_INCREMENT COMMENT '运单号',
+  `userid` bigint DEFAULT NULL COMMENT '用户ID',
+  `toaddress` varchar(100) DEFAULT NULL COMMENT '收货地址',
+  `addressee` varchar(100) DEFAULT NULL COMMENT '收货人',
+  `tele` varchar(100) DEFAULT NULL COMMENT '收件人电话',
+  `info` varchar(2000) DEFAULT NULL COMMENT '运单详情',
+  `state` varchar(1) DEFAULT NULL COMMENT '运单状态',
+  PRIMARY KEY (`sn`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='运单';
+
+/*Table structure for table `waybilldetail` */
+
+DROP TABLE IF EXISTS `waybilldetail`;
+
+CREATE TABLE `waybilldetail` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `sn` bigint DEFAULT NULL COMMENT '运单号',
+  `exedate` varchar(10) DEFAULT NULL COMMENT '执行日期',
+  `exetime` varchar(10) DEFAULT NULL COMMENT '执行时间',
+  `info` varchar(100) DEFAULT NULL COMMENT '执行信息',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `view_storealert` */
+
+DROP TABLE IF EXISTS `view_storealert`;
+
+/*!50001 DROP VIEW IF EXISTS `view_storealert` */;
+/*!50001 DROP TABLE IF EXISTS `view_storealert` */;
+
+/*!50001 CREATE TABLE  `view_storealert`(
+ `uuid` bigint ,
+ `name` varchar(30) ,
+ `storenum` decimal(18,2) ,
+ `innum` decimal(18,2) ,
+ `outnum` decimal(18,2) 
+)*/;
+
+/*View structure for view view_storealert */
+
+/*!50001 DROP TABLE IF EXISTS `view_storealert` */;
+/*!50001 DROP VIEW IF EXISTS `view_storealert` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_storealert` AS select `a`.`uuid` AS `uuid`,`a`.`name` AS `name`,`a`.`storenum` AS `storenum`,`b`.`innum` AS `innum`,`c`.`outnum` AS `outnum` from (((select `g`.`UUID` AS `uuid`,`g`.`NAME` AS `name`,cast((ifnull(sum(`s`.`NUM`),0) + ifnull(`g`.`BEGINSTORENUM`,0)) as decimal(18,2)) AS `storenum` from (`goods` `g` left join `storedetail` `s` on((`g`.`UUID` = `s`.`GOODSUUID`))) group by `g`.`UUID`,`g`.`NAME`) `a` join (select `od`.`GOODSUUID` AS `goodsuuid`,cast(sum((`od`.`NUM` - ifnull(`od`.`STORENUM`,0))) as decimal(18,2)) AS `innum` from (`orderdetail` `od` join `orders` `o`) where ((`od`.`ORDERSUUID` = `o`.`UUID`) and (`o`.`TYPE` = 1) and (`od`.`STATE` < 2)) group by `od`.`GOODSUUID`) `b`) join (select `od`.`GOODSUUID` AS `goodsuuid`,cast(sum((`od`.`NUM` - ifnull(`od`.`STORENUM`,0))) as decimal(18,2)) AS `outnum` from (`orderdetail` `od` join `orders` `o`) where ((`od`.`ORDERSUUID` = `o`.`UUID`) and (`o`.`TYPE` = 2) and (`od`.`STATE` < 2)) group by `od`.`GOODSUUID`) `c`) where ((`a`.`uuid` = `b`.`goodsuuid`) and (`a`.`uuid` = `c`.`goodsuuid`)) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
